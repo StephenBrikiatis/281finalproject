@@ -1,8 +1,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
