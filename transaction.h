@@ -1,15 +1,14 @@
 //Stephen
 #include "common.h"
-#include "LinkedList.h"
 
 struct Transaction
 {
   private:
-    LinkedList tItems;
-    bool relevant;
+    LinkedList<int> tItems;
+    bool mRelevant;
   public:
     Transaction();
-    Transaction(Linkedlist tItems, bool relevant
+    Transaction(LinkedList<int> tItems, bool relevant);
     ~Transaction();
     
     void addItem(int item);

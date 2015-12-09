@@ -2,12 +2,14 @@
 #ifndef CORRELATION_H
 #define CORRELATION_H
 
+#include "common.h"
+
 struct Correlation
 {
 	private:
 		LinkedList<int> cItems;
-		int occurance;
-		bool relevant;
+		int mOccurance;
+		bool mRelevant;
 
 	public:
 		//contructors
