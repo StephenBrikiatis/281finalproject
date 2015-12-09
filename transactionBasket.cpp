@@ -72,7 +72,7 @@ void TransactionBasket::compare(CorrelationBasket correlations)
 {
 	for (int i = 0; i < mSize; i++)
 	{
-		mTransactionList.updateRelevance();
+		mTransactionList[i].updateRelevance(correlations);
 	}
 }
 
