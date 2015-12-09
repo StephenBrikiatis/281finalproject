@@ -5,7 +5,7 @@ struct Transaction
 {
   private:
     LinkedList<int> tItems;
-    bool relevant;
+    bool mRelevant;
   public:
     Transaction();
     Transaction(LinkedList<int> tItems, bool relevant);
