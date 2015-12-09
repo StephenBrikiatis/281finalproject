@@ -22,13 +22,18 @@ CorrelationBasket::CorrelationBasket(Correlation *correlations[], int size)
 
 int CorrelationBasket::populate(CorrelationBasket previousBasket)
 {
-	for(int i =0; i < mSize; i++)
-	{
-		if(previousBasket.mCorrelations[i].relavent == true)
-		{
+	int newSize =0;
 
+	for(int i =0; i < previousBasket.getSize(); i++)
+	{
+		if(previousBasket.mCorrelations[i].getRelevent() == true)
+		{
+			newSize++;
+			mCorrelations[newSize] = previousBasket.mCorrelations[i];
 		}
 	}
+
+	mSize = newSize;
 }
 
 int CorrelationBasket::getSize()

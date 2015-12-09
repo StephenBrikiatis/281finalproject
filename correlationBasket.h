@@ -2,7 +2,7 @@
 #include "common.h"
 #include "correlation.h"
 
-struct CorrelationBasket
+struct CorrelationBasket 
 {
 private:
 	Correlation *mCorrelations[10]; //placeholder int
