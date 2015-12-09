@@ -23,6 +23,7 @@ struct TransactionBasket
 		TransactionBasket(string fileName);
 		~TransactionBasket();
 
+		//functions
 		void populate(TransactionBasket otherBasket);
 		void compare(CorrelationBasket correlations);
 

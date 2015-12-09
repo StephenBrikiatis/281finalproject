@@ -33,7 +33,7 @@ void Transaction::setRelevant(bool relevent)
 
 void Transaction::updateRelevant(CorrelationBasket currentBasket)
 {
-	int correlationSize =0;
+	/*int correlationSize =0;
 	Correlation tmpCore;
 	LinkedList<int> tmpList;
 	for(int i = 0; i < currentBasket.getSize(); i++)
@@ -45,5 +45,39 @@ void Transaction::updateRelevant(CorrelationBasket currentBasket)
 			
 			}
 		}
+	}*/
+
+	Correlation tmpCorr;
+	LinkedList<int> tmpList;
+	bool isRelavent = false;
+	int itemCheck;
+
+	//loop accessing correlations in basket
+	for (int i = 0; i < currentBasket.getSize(); i++)
+	{
+		tmpCorr = currentBasket.getCorrelation(i);
+
+		bool itemsFound = true;
+		//loop accessing numbers in correlation
+		for (int j = 0; j < tmpCorr.getSize(); j++)
+		{
+			itemCheck = tmpCorr.getItem(j);
+			
+			//checks if item exists in transaction
+			if (!tItems.isExist(itemCheck))
+			{
+				itemsFound = false;
+			}
+		}
+
+		//breaks loop if a correlation is found in a transaction
+		if (itemsFound == true)
+		{
+			isRelavent = true;
+			break;
+		}
 	}
+
+	//updates relavence
+	setRelevant(isRelavent);
 }

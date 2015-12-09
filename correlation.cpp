@@ -40,8 +40,18 @@ void Correlation::setRelevant(bool newRelevant)
 	mRelevant = newRelevant;
 }
 
+//getters and setters for the size member
+int Correlation::getSize()
+{
+	return mSize;
+}
+void Correlation::setSize(int size)
+{
+	mSize = size;
+}
+
 //get specific item from linked list
 int Correlation::getItem(int position)
 {
-	cItems.getData(position);
+	return cItems.getData(position);
 }

@@ -26,7 +26,7 @@ int CorrelationBasket::populate(CorrelationBasket previousBasket)
 
 	for(int i =0; i < previousBasket.getSize(); i++)
 	{
-		if(previousBasket.mCorrelations[i].getRelevent() == true)
+		if(previousBasket.getCorrelation(i).getRelevant() == true)
 		{
 			newSize++;
 			mCorrelations[newSize] = previousBasket.mCorrelations[i];
@@ -46,7 +46,7 @@ void CorrelationBasket::setSize(int size)
 	mSize = size;
 }
 
-Correlation* CorrelationBasket::getCorrelation(int choice)
+Correlation CorrelationBasket::getCorrelation(int choice)
 {
 	return mCorrelations[choice];
 }
