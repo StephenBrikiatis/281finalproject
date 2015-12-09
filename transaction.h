@@ -14,8 +14,8 @@ struct Transaction
     
     void addItem(int item);
     
-    bool getRelavent();
-    void setRelavent(bool newRelavent);
+    bool getRelevant();
+    void setRelevant(bool newRelavent);
 
-	void updateRelavent(CorrelationBasket currentBasket);
+	void updateRelevant(CorrelationBasket currentBasket);
 };

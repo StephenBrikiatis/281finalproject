@@ -21,17 +21,17 @@ void Transaction::addItem(int item)
 	tItems.insert(item);
 }
 
-bool Transaction::getRelavent()
+bool Transaction::getRelevant()
 {
 	return mRelevant;
 }
 
-void Transaction::setRelavent(bool relevent)
+void Transaction::setRelevant(bool relevent)
 {
 	mRelevant = relevent;
 }
 
-void Transaction::updateRelavent(CorrelationBasket currentBasket)
+void Transaction::updateRelevant(CorrelationBasket currentBasket)
 {
 	int correlationSize =0;
 	Correlation tmpCore;

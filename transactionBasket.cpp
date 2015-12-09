@@ -51,7 +51,7 @@ void TransactionBasket::populate(TransactionBasket otherBasket)
 	//fill temp list
 	for (int i = 0; i < mSize; i++)
 	{
-		if (otherBasket.getTransaction(i).getRelavent() == true)
+		if (otherBasket.getTransaction(i).getRelevant() == true)
 		{
 			tmpList[tmpSize] = otherBasket.getTransaction(i);
 			tmpSize++;
@@ -72,7 +72,7 @@ void TransactionBasket::compare(CorrelationBasket correlations)
 {
 	for (int i = 0; i < mSize; i++)
 	{
-		mTransactionList[i].updateRelevance(correlations);
+		mTransactionList[i].updateRelevant(correlations);
 	}
 }
 
