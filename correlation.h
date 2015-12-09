@@ -21,6 +21,8 @@ struct Correlation
 		void setOccurance(int newOccurance);
 		bool getRelevant();
 		void setRelevant(bool newRelevant);
+
+		int getItem(int position);
 };
 
 #endif

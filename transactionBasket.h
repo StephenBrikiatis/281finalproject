@@ -5,8 +5,7 @@
 #include "transaction.h"
 #include "correlationBasket.h"
 
-#include <string>
-#include <fstream>
+#include "common.h"
 
 const int LARGEST_SIZE = 100000;
 
@@ -15,8 +14,8 @@ using namespace std;
 struct TransactionBasket
 {
 	private:
-		int size; //size of transaction basket
-		Transaction *transactionList = new Transaction[size]; //list of all transactions basket is currently holding
+		int mSize; //size of transaction basket
+		Transaction *mTransactionList = new Transaction[mSize]; //list of all transactions basket is currently holding
 
 	public:	
 		//contructors
@@ -25,7 +24,7 @@ struct TransactionBasket
 		~TransactionBasket();
 
 		void populate(TransactionBasket otherBasket);
-		void compare(CorrelationBasket correlation);
+		void compare(CorrelationBasket correlations);
 
 		//getters/setters
 		int getSize();
