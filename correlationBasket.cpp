@@ -45,3 +45,8 @@ void CorrelationBasket::setSize(int size)
 {
 	mSize = size;
 }
+
+Correlation* CorrelationBasket::getCorrelation(int choice)
+{
+	return mCorrelations[choice];
+}

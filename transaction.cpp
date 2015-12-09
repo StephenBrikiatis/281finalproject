@@ -31,7 +31,19 @@ void Transaction::setRelavent(bool relevent)
 	mRelevant = relevent;
 }
 
-void Transaction::updateRelevnet(CorrelationBasket currentBasket)
+void Transaction::updateRelavent(CorrelationBasket currentBasket)
 {
-
+	int correlationSize =0;
+	Correlation tmpCore;
+	LinkedList<int> tmpList;
+	for(int i = 0; i < currentBasket.getSize(); i++)
+	{
+		tmpCore = currentBasket.getCorrelation[i];
+		tmpList = 
+			for(int k = 0; k < tItems.getCount(); k++)
+			{
+			
+			}
+		}
+	}
 }

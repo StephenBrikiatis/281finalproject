@@ -17,5 +17,5 @@ struct Transaction
     bool getRelavent();
     void setRelavent(bool newRelavent);
 
-	void updateRelevnet(CorrelationBasket currentBasket);
+	void updateRelavent(CorrelationBasket currentBasket);
 };

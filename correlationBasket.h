@@ -16,4 +16,6 @@ public:
 
 	int getSize();
 	void setSize(int size);
+
+	Correlation *getCorrelation(int choice);
 };
