@@ -1,3 +1,4 @@
+//By Gabriel Pereyra
 #ifndef CORRELATION_H
 #define CORRELATION_H
 
