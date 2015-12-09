@@ -1,5 +1,6 @@
 //Stephen
 #include "common.h"
+#include "correlationBasket.h"
 
 struct Transaction
 {
@@ -8,11 +9,13 @@ struct Transaction
     bool mRelevant;
   public:
     Transaction();
-    Transaction(LinkedList<int> tItems, bool relevant);
+    Transaction(LinkedList<int> newList, bool relevant);
     ~Transaction();
     
     void addItem(int item);
     
     bool getRelavent();
     void setRelavent(bool newRelavent);
+
+	void updateRelevnet(CorrelationBasket currentBasket);
 };
