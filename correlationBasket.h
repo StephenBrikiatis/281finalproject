@@ -1,9 +1,8 @@
 //Stephen
 #ifndef CORRELATIONBASKET_H
 #define CORRELATIONBASKET_H
-#include "common.h"
-#include "correlation.h"
 
+#include "correlation.h"
 
 struct CorrelationBasket 
 {
@@ -16,7 +15,6 @@ public:
 	CorrelationBasket();
 	~CorrelationBasket();
 
-	void updateOccurances(TransactionBasket currentBasket);
 	void updateRelevance();
 
 	int getSize();

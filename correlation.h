@@ -4,7 +4,6 @@
 
 #include "common.h"
 
-
 struct Correlation
 {
 	private:
@@ -18,7 +17,6 @@ struct Correlation
 		~Correlation();
 
 		void add(int cItem); //add item to correlation
-		void checkOccurance(TransactionBasket currentBasket);
 
 		//getters and setters
 		int getOccurance();

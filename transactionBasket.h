@@ -2,12 +2,9 @@
 #ifndef TRANSACTIONBASKET_H
 #define TRANSACTIONBASKET_H
 
-#include "common.h"
-
-
 const int LARGEST_SIZE = 100000;
 
-using namespace std;
+#include "transaction.h"
 
 struct TransactionBasket
 {
@@ -23,7 +20,6 @@ struct TransactionBasket
 
 		//functions
 		void populate(TransactionBasket otherBasket);
-		void compare(CorrelationBasket correlations);
 
 		//getters/setters
 		int getSize();

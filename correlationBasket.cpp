@@ -7,14 +7,6 @@ CorrelationBasket::CorrelationBasket()
 	mMinOccurance = 0;
 }
 
-void CorrelationBasket::updateOccurances(TransactionBasket currentBasket)
-{
-	for (int i = 0; i < mSize; i++)
-	{
-
-	}
-}
-
 //goes through all correlations and updates their relevance by Gabe
 void CorrelationBasket::updateRelevance()
 {

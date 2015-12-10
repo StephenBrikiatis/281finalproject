@@ -1,8 +1,8 @@
 //Stephen
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
-#include "common.h"
 
+#include "common.h"
 
 struct Transaction
 {
@@ -23,7 +23,6 @@ struct Transaction
 	int getSize();
 	int getItem(int position);
 
-	void updateRelevant(CorrelationBasket currentBasket);
 };
 
 #endif

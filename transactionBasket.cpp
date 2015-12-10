@@ -67,15 +67,6 @@ void TransactionBasket::populate(TransactionBasket otherBasket)
 	mSize = tmpSize;
 }
 
-//compares current item sets to relevant correlations to determine which transactions are relevant or not
-void TransactionBasket::compare(CorrelationBasket correlations)
-{
-	for (int i = 0; i < mSize; i++)
-	{
-		mTransactionList[i].updateRelevant(correlations);
-	}
-}
-
 //getters and setters for the size member
 int TransactionBasket::getSize()
 {
