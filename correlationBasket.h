@@ -13,7 +13,6 @@ public:
 	CorrelationBasket();
 	~CorrelationBasket();
 
-	int populate(CorrelationBasket previousBasket);
 	void updateOccurances(TransactionBasket currentBasket);
 	void updateRelevance();
 
@@ -23,4 +22,6 @@ public:
 	void setMinOccurance(int size);
 
 	Correlation getCorrelation(int choice);
+
+	void setCorrelation(Correlation newCorrelation, int choice);
 };

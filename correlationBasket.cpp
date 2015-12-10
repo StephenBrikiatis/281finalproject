@@ -7,22 +7,6 @@ CorrelationBasket::CorrelationBasket()
 	mMinOccurance = 0;
 }
 
-int CorrelationBasket::populate(CorrelationBasket previousBasket)
-{
-	int newSize =0;
-
-	for(int i =0; i < previousBasket.getSize(); i++)
-	{
-		if(previousBasket.getCorrelation(i).getRelevant() == true)
-		{
-			newSize++;
-			mCorrelations[newSize] = previousBasket.mCorrelations[i];
-		}
-	}
-
-	mSize = newSize;
-}
-
 void CorrelationBasket::updateOccurances(TransactionBasket currentBasket)
 {
 	for (int i = 0; i < mSize; i++)
@@ -66,4 +50,9 @@ void CorrelationBasket::setMinOccurance(int occurance)
 Correlation CorrelationBasket::getCorrelation(int choice)
 {
 	return mCorrelations[choice];
+}
+
+void CorrelationBasket::setCorrelation(Correlation newCore, int choice)
+{
+	mCorrelations[choice] = newCore;
 }

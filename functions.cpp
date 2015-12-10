@@ -40,7 +40,8 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 {
 	LinkedList<int> numbers;
 	CorrelationBasket newBasket;
-	int numbersLength, r = 0, index = 0;
+	Correlation holder, resetHolder;
+	int numbersLength, r = 0, index = 0, coreCount = 0;
 
 	numbers = createListOfNums(currentBasket);
 	numbersLength = numbers.getCount();
@@ -55,7 +56,31 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 	{
 		if(index <= (numbersLength +(r -comboLength)))
 		{
-			newBasket.
+			holder.add(numbers.getData(index));
+
+			if(r == comboLength-1)
+			{
+				newBasket.setCorrelation(holder, coreCount);
+				holder = resetHolder;
+				coreCount++;
+				index++;
+			}
+			else
+			{
+				index = (holder.getItem(r) + 1);
+			}
+		}
+		else
+		{
+			r--;
+			if(r > 0)
+			{
+				index = (holder.getItem(r) +1);
+			}
+			else
+			{
+				index = (holder.getItem(0) +1);
+			}
 		}
 	}
 }
@@ -74,15 +99,17 @@ LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
 	for(int i = 0; i < basketSize; i++)
 	{
 		tmp = currentBasket.getCorrelation(i);
-		if(tmp.getRelevant(
-		for(int j = 0; j < correSize; j++)
+		if(tmp.getRelevant())
 		{
-			compare = tmp.getItem(j);
-			for(int k = 0; k < listOfNums.getCount(); k++)
+			for(int j = 0; j < correSize; j++)
 			{
-				listOfNums.getData(k);
+				compare = tmp.getItem(j);
+				for(int k = 0; k < listOfNums.getCount(); k++)
+				{
+					listOfNums.getData(k);
+				}
+				listOfNums.insert(compare);
 			}
-			listOfNums.insert(compare);
 		}
 	}
 
