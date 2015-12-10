@@ -14,6 +14,7 @@ struct TransactionBasket
 
 	public:	
 		//contructors
+		TransactionBasket();
 		TransactionBasket(int newSize);
 		TransactionBasket(string fileName);
 		~TransactionBasket();

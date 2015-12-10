@@ -2,6 +2,11 @@
 
 #include "transactionBasket.h"
 
+TransactionBasket::TransactionBasket()
+{
+	mSize = 0;
+}
+
 TransactionBasket::TransactionBasket(int newSize)
 {
 	mSize = newSize;
@@ -21,25 +26,26 @@ TransactionBasket::TransactionBasket(string fileName)
 	ifstream data;
 	data.open(fileName);
 
-	if (data.good())
+	while (!data.eof())
 	{
-		while (!data.eof())
-		{
-			data >> transNum;
-			data >> tmpItem;
+		data >> transNum;
+		data >> tmpItem;
 
-			transactionList[transNum - 1].addItem(tmpItem); //-1 cause array positioning
+		transactionList[transNum - 1].addItem(tmpItem); //-1 cause array positioning
+
+		if (tmpSize != transNum)
 			tmpSize++;
-		}
 	}
+
+	data.close();
 
 	mSize = tmpSize;
 }
 
 TransactionBasket::~TransactionBasket()
 {
-	mSize = NULL;
-	delete mTransactionList;
+	/*mSize = NULL;
+	delete[] mTransactionList;*/
 }
 
 //populates a new basket with the relevant transactions from the previous basket
