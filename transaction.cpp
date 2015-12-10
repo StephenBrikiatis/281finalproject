@@ -39,10 +39,12 @@ void Transaction::updateRelevant(CorrelationBasket currentBasket)
 	for(int i = 0; i < currentBasket.getSize(); i++)
 	{
 		tmpCore = currentBasket.getCorrelation[i];
-		tmpList = 
-			for(int k = 0; k < tItems.getCount(); k++)
+		if(tmpCore.getRelevant() == true)
+		{
+			tmpCore.cItems.getCount();
+			for(int j = 0; j < tItems.getCount(); j++)
 			{
-			
+				
 			}
 		}
 	}*/
