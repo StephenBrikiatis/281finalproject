@@ -6,10 +6,7 @@ struct CorrelationBasket
 {
 private:
 	Correlation* mCorrelations = new Correlation[1000]; //placeholder int
-<<<<<<< HEAD
 	int mMinOccurance;
-=======
->>>>>>> origin/master
 	int mSize;
 
 public:

@@ -17,6 +17,25 @@ bool checkUserInput(string input)
 	return validate;
 }
 
+//outputs current correlation and their occurances to the output file
+void printCorrelations(CorrelationBasket currentBasket, ofstream output)
+{
+	int correlationNum = 1;
+
+	for (int i = 0; i < currentBasket.getSize(); i++)
+	{
+		output << correlationNum << " [";
+		for (int j = 0; j < currentBasket.getCorrelation(i).getSize(); j++)
+		{
+			output << " " << currentBasket.getCorrelation(i).getItem(j);
+		}
+		output << "] Occurance: ";
+		output << currentBasket.getCorrelation(i).getOccurance() << "  ";
+	}
+
+	output << endl << endl;
+}
+
 CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 {
 	LinkedList<int> numbers;
