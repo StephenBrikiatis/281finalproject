@@ -48,22 +48,6 @@ int Transaction::getItem(int position)
 
 void Transaction::updateRelevant(CorrelationBasket currentBasket)
 {
-	/*int correlationSize =0;
-	Correlation tmpCore;
-	LinkedList<int> tmpList;
-	for(int i = 0; i < currentBasket.getSize(); i++)
-	{
-		tmpCore = currentBasket.getCorrelation[i];
-		if(tmpCore.getRelevant() == true)
-		{
-			tmpCore.cItems.getCount();
-			for(int j = 0; j < tItems.getCount(); j++)
-			{
-				
-			}
-		}
-	}*/
-
 	Correlation tmpCorr;
 	bool isRelavent = false;
 	int itemCheck;
