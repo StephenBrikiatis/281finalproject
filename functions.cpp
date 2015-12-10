@@ -202,3 +202,96 @@ void updateRelevant(Transaction currentTransaction, CorrelationBasket currentCor
 	//updates relavence
 	currentTransaction.setRelevant(isRelavent);
 }
+
+//simple list of possible files
+string listOfFiles(int input)
+{
+	switch (input)
+	{
+	case 1:
+		return database[0];
+		break;
+	case 2:
+		return database[1];
+		break;
+	case 3:
+		return database[2];
+		break;
+	case 4:
+		return database[3];
+		break;
+	case 5:
+		return database[4];
+		break;
+	case 6:
+		return database[5];
+		break;
+	case 7:
+		return database[6];
+		break;
+	case 8:
+		return database[7];
+		break;
+	case 9:
+		return database[8];
+		break;
+	case 10:
+		return database[9];
+		break;
+	case 11:
+		return database[10];
+		break;
+	case 12:
+		return database[11];
+		break;
+	case 13:
+		return database[12];
+		break;
+	case 14:
+		return database[13];
+		break;
+	case 15:
+		return database[14];
+		break;
+	case 16:
+		return database[15];
+		break;
+	case 17:
+		return database[16];
+		break;
+	case 18:
+		return database[17];
+		break;
+	case 19:
+		return database[18];
+		break;
+	case 20:
+		return database[19];
+		break;
+	case 21:
+		return database[20];
+		break;
+	case 22:
+		return database[21];
+		break;
+	case 23:
+		return database[22];
+		break;
+	case 24:
+		return database[23];
+		break;
+	case 25:
+		return database[24];
+		break;
+	case 26:
+		return database[25];
+		break;
+	case 27:
+		return database[26];
+		break;
+	default:
+		cout << "Not an input.";
+
+	}
+
+}

@@ -25,4 +25,6 @@ void checkOccurance(Correlation currentCorrelation, TransactionBasket currentTra
 void compare(TransactionBasket currentTransactions, CorrelationBasket currentCorrelations);
 void updateRelevant(Transaction currentTransaction, CorrelationBasket currentCorrelations);
 
+string listOfFiles(int input);
+
 #endif
