@@ -4,6 +4,7 @@
 
 #include "common.h"
 
+
 struct Correlation
 {
 	private:

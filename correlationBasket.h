@@ -1,6 +1,9 @@
 //Stephen
+#ifndef CORRELATIONBASKET_H
+#define CORRELATIONBASKET_H
 #include "common.h"
 #include "correlation.h"
+
 
 struct CorrelationBasket 
 {
@@ -25,3 +28,5 @@ public:
 
 	void setCorrelation(Correlation newCorrelation, int choice);
 };
+
+#endif
