@@ -5,17 +5,22 @@
 struct CorrelationBasket 
 {
 private:
-	Correlation* mCorrelations = new Correlation[100000]; //placeholder int
+	Correlation* mCorrelations = new Correlation[1000]; //placeholder int
+	int mMinOccurance;
 	int mSize;
 
 public:
 	CorrelationBasket();
-	CorrelationBasket(Correlation *correlations[], int size);
 	~CorrelationBasket();
+
 	int populate(CorrelationBasket previousBasket);
+	void updateOccurances(TransactionBasket currentBasket);
+	void updateRelevance();
 
 	int getSize();
 	void setSize(int size);
+	int getMinOccurance();
+	void setMinOccurance(int size);
 
 	Correlation getCorrelation(int choice);
 };

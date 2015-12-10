@@ -3,7 +3,6 @@
 #define TRANSACTIONBASKET_H
 
 #include "transaction.h"
-#include "correlationBasket.h"
 
 #include "common.h"
 

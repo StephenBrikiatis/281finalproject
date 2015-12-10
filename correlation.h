@@ -8,7 +8,6 @@ struct Correlation
 {
 	private:
 		LinkedList<int> cItems;
-		int mSize;
 		int mOccurance;
 		bool mRelevant;
 
@@ -18,6 +17,7 @@ struct Correlation
 		~Correlation();
 
 		void add(int cItem); //add item to correlation
+		void checkOccurance(TransactionBasket currentBasket);
 
 		//getters and setters
 		int getOccurance();
@@ -25,7 +25,6 @@ struct Correlation
 		bool getRelevant();
 		void setRelevant(bool newRelevant);
 		int getSize();
-		void setSize(int newSize);
 
 		int getItem(int position);
 };

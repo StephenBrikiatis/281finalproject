@@ -21,6 +21,11 @@ void Transaction::addItem(int item)
 	tItems.insert(item);
 }
 
+bool Transaction::checkIfExists(int item)
+{
+	return tItems.isExist(item);
+}
+
 bool Transaction::getRelevant()
 {
 	return mRelevant;
@@ -29,6 +34,16 @@ bool Transaction::getRelevant()
 void Transaction::setRelevant(bool relevent)
 {
 	mRelevant = relevent;
+}
+
+int Transaction::getSize()
+{
+	return tItems.getCount();
+}
+
+int Transaction::getItem(int position)
+{
+	return tItems.getData(position);
 }
 
 void Transaction::updateRelevant(CorrelationBasket currentBasket)
@@ -50,7 +65,6 @@ void Transaction::updateRelevant(CorrelationBasket currentBasket)
 	}*/
 
 	Correlation tmpCorr;
-	LinkedList<int> tmpList;
 	bool isRelavent = false;
 	int itemCheck;
 

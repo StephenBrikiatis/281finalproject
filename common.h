@@ -6,6 +6,8 @@
 #include <fstream>
 
 #include "LinkedList.h"
+#include "transactionBasket.h"
+#include "correlationBasket.h"
 
 using namespace std;
 
