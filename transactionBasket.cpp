@@ -5,6 +5,7 @@
 TransactionBasket::TransactionBasket()
 {
 	mSize = 0;
+	Transaction *transactionList = new Transaction[mSize];
 }
 
 TransactionBasket::TransactionBasket(int newSize)
@@ -87,4 +88,9 @@ void TransactionBasket::setSize(int size)
 Transaction TransactionBasket::getTransaction(int position)
 {
 	return mTransactionList[position];
+}
+
+void TransactionBasket::setTransaction(Transaction &newTrans, int choice)
+{
+	mTransactionList[choice] = newTrans;
 }

@@ -25,7 +25,9 @@ struct TransactionBasket
 		//getters/setters
 		int getSize();
 		void setSize(int size);
+
 		Transaction getTransaction(int position);
+		void setTransaction(Transaction &newTrans, int choice);
 };
 
 #endif
