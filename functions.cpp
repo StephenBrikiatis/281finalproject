@@ -20,7 +20,7 @@ bool checkUserInput(string input)
 void createBasket(CorrelationBasket currentBasket, int comboLength)
 {
 	LinkedList<int> numbers;
-	int numbersLength;
+	int numbersLength, r = 0, index = 0;
 
 	numbers = createListOfNums(currentBasket);
 	numbersLength = numbers.getCount();
