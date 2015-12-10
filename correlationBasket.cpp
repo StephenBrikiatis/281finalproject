@@ -49,7 +49,7 @@ Correlation CorrelationBasket::getCorrelation(int choice)
 	return mCorrelations[choice];
 }
 
-void CorrelationBasket::setCorrelation(Correlation newCore, int choice)
+void CorrelationBasket::setCorrelation(Correlation &newCore, int choice)
 {
 	mCorrelations[choice] = newCore;
 }

@@ -1,6 +1,6 @@
 #include "Header.h"
 
-int main()
+/*int main()
 {
 	//initial variables
 	int minimumOccurance; //variable for setting the minimum occurance that will be checked for
@@ -38,4 +38,24 @@ int main()
 
 	system("pause");
 	return 0;
+}*/
+
+int main()
+{
+	CorrelationBasket testBasket;
+	Correlation testCorrelation, tmp;
+
+	testCorrelation.add(1);
+	testCorrelation.add(2);
+	testCorrelation.add(3);
+	tmp.add(1);
+
+	testBasket.setCorrelation(testCorrelation, 0);
+
+	tmp = testCorrelation;
+
+	for (int i = 0; i < 3; i++)
+	{
+		 cout << tmp.getItem(i);
+	}
 }

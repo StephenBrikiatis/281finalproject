@@ -24,7 +24,7 @@ public:
 
 	Correlation getCorrelation(int choice);
 
-	void setCorrelation(Correlation newCorrelation, int choice);
+	void setCorrelation(Correlation &newCorrelation, int choice);
 };
 
 #endif

@@ -51,3 +51,15 @@ int Correlation::getItem(int position)
 {
 	return cItems.getData(position);
 }
+
+//= operator overload 
+void Correlation::operator= (Correlation& rhs)
+{
+	cItems.clear();
+	for (int i = 0; i < rhs.getSize(); i++)
+	{
+		cItems.insert(rhs.getItem(i));
+	}
+	rhs.setOccurance(mOccurance);
+	rhs.setRelevant(mRelevant);
+}
