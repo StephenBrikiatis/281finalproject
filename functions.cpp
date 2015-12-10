@@ -49,7 +49,7 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 	if(comboLength > numbersLength)
 	{
 		cout << "Can't make a combination with that few numbers" << endl;
-		return;
+		return newBasket;
 	}
 
 	while(r >= 0)

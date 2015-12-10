@@ -15,6 +15,7 @@ string database[DATABASE_SIZE] = { "T5.N0.1K.D1K", "T5.N0.1K.D10K", "T5.N0.1K.D1
 bool checkUserInput(string input);
 void printCorrelations(CorrelationBasket currentBasket, ofstream output);
 void createCombinations(CorrelationBasket currentBasket, int comboLength);
+//LinkedList<int> createListOfNums(CorrelationBasket currentBasket);
 
 //functions that use both classes
 void updateOccurances(CorrelationBasket currentCorrelations, TransactionBasket currentTransactions);

@@ -12,7 +12,7 @@ void CorrelationBasket::updateRelevance()
 {
 	for (int i = 0; i < mSize; i++)
 	{
-		if (mCorrelations[i].getOccurance < mMinOccurance)
+		if (mCorrelations[i].getOccurance() < mMinOccurance)
 		{
 			mCorrelations[i].setRelevant(false);
 		}
