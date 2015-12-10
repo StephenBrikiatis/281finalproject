@@ -7,6 +7,11 @@ CorrelationBasket::CorrelationBasket()
 	mMinOccurance = 0;
 }
 
+CorrelationBasket::~CorrelationBasket()
+{
+
+}
+
 //goes through all correlations and updates their relevance by Gabe
 void CorrelationBasket::updateRelevance()
 {
