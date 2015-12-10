@@ -17,9 +17,10 @@ bool checkUserInput(string input)
 	return validate;
 }
 
-void createBasket(CorrelationBasket currentBasket, int comboLength)
+CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 {
 	LinkedList<int> numbers;
+	CorrelationBasket newBasket;
 	int numbersLength, r = 0, index = 0;
 
 	numbers = createListOfNums(currentBasket);
@@ -31,7 +32,13 @@ void createBasket(CorrelationBasket currentBasket, int comboLength)
 		return;
 	}
 
-
+	while(r >= 0)
+	{
+		if(index <= (numbersLength +(r -comboLength)))
+		{
+			newBasket.
+		}
+	}
 }
 
 LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
@@ -48,6 +55,7 @@ LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
 	for(int i = 0; i < basketSize; i++)
 	{
 		tmp = currentBasket.getCorrelation(i);
+		if(tmp.getRelevant(
 		for(int j = 0; j < correSize; j++)
 		{
 			compare = tmp.getItem(j);
