@@ -69,6 +69,7 @@ void Transaction::updateRelevant(CorrelationBasket currentBasket)
 			if (!tItems.isExist(itemCheck))
 			{
 				itemsFound = false;
+				break;
 			}
 		}
 
