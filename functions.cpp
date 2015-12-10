@@ -83,6 +83,8 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 			}
 		}
 	}
+
+	return newBasket;
 }
 
 LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
@@ -129,7 +131,7 @@ void updateOccurances(CorrelationBasket currentCorrelations, TransactionBasket c
 void checkOccurance(Correlation currentCorrelation, TransactionBasket currentTransactions)
 {
 	Transaction tmpTransaction;
-	int itemCheck;
+	int itemCheck = 0;
 	bool correlationFound;
 
 	//go through every transaction
@@ -168,7 +170,7 @@ void updateRelevant(Transaction currentTransaction, CorrelationBasket currentCor
 {
 	Correlation tmpCorr;
 	bool isRelavent = false;
-	int itemCheck;
+	int itemCheck = 0;
 
 	//loop accessing correlations in basket
 	for (int i = 0; i < currentCorrelations.getSize(); i++)
