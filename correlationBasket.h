@@ -5,7 +5,7 @@
 struct CorrelationBasket 
 {
 private:
-	Correlation* mCorrelations = new Correlation[100000]; //placeholder int
+	Correlation* mCorrelations = new Correlation[1000]; //placeholder int
 	int mSize;
 
 public:

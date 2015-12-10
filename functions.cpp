@@ -16,3 +16,8 @@ bool checkUserInput(string input)
 
 	return validate;
 }
+
+void createBasket(CorrelationBasket currentBasket, int comboLength)
+{
+	N = 
+}
