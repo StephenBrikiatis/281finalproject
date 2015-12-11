@@ -18,19 +18,19 @@ bool checkUserInput(string input)
 }
 
 //outputs current correlation and their occurances to the output file
-void printCorrelations(CorrelationBasket currentBasket, ofstream output)
+void printCorrelations(Correlation currentBasket[], int size, ofstream output)
 {
 	int correlationNum = 1;
 
-	for (int i = 0; i < currentBasket.getSize(); i++)
+	for (int i = 0; i < size; i++)
 	{
 		output << correlationNum << " [";
-		for (int j = 0; j < currentBasket.getCorrelation(i).getSize(); j++)
+		for (int j = 0; j < currentBasket[i].getSize(); j++)
 		{
-			output << " " << currentBasket.getCorrelation(i).getItem(j);
+			output << " " << currentBasket[i].getItem(j);
 		}
 		output << "] Occurance: ";
-		output << currentBasket.getCorrelation(i).getOccurance() << "  ";
+		output << currentBasket[i].getOccurance() << "  ";
 	}
 
 	output << endl << endl;

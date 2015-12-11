@@ -79,7 +79,9 @@ int main()
 
 	Correlation *newArray = new Correlation[1000];
 
+	newArray[0].add(1);
 
+	cout << newArray[0].getItem(0);
 
 	pause();
 	return 0;
