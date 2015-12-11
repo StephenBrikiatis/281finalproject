@@ -36,32 +36,29 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream output)
 	output << endl << endl;
 }
 
-CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
+int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
 {
-	LinkedList<int> numbers;
-	CorrelationBasket newBasket;
+	int numbers[1000];
 	Correlation holder, resetHolder;
 	int numbersLength, r = 0, index = 0, coreCount = 0;
 
-	numbers = createListOfNums(currentBasket);
+	numbersLength = createListOfNums(numbers, currentCore, coreArraySize);
 	cout << "Pause for dramatic effect.";
-	numbersLength = numbers.getCount();
 
 	if(comboLength > numbersLength)
 	{
 		cout << "Can't make a combination with that few numbers" << endl;
-		return newBasket;
 	}
 
 	while(r >= 0)
 	{
 		if(index <= (numbersLength +(r -comboLength)))
 		{
-			holder.add(numbers.getData(index));
+			holder.add(numbers[index], r);
 
 			if(r == comboLength-1)
 			{
-				newBasket.setCorrelation(holder, coreCount);
+				currentCore[coreCount] = holder;
 				holder = resetHolder;
 				coreCount++;
 				index++;
@@ -85,38 +82,37 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 		}
 	}
 
-	return newBasket;
+	return coreCount;
 }
 
-LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
+int createListOfNums(int listOfNums[], Correlation listOfCores[], int size)
 {
-	LinkedList<int> listOfNums;
-	int basketSize = 0, correSize = 0, compare;
+	int correSize = 0, compare, listSize = 0;
 	Correlation tmp;
 	bool exists = false;
 
-	basketSize = currentBasket.getSize();
-	tmp = currentBasket.getCorrelation(0);
+	tmp = listOfCores[0];
 	correSize = tmp.getSize();
 
-	for(int i = 0; i < basketSize; i++)
+	for(int i = 0; i < size; i++)
 	{
-		tmp = currentBasket.getCorrelation(i);
+		tmp = listOfCores[i];
 		if(tmp.getRelevant())
 		{
 			for(int j = 0; j < correSize; j++)
 			{
 				compare = tmp.getItem(j);
-				for(int k = 0; k < listOfNums.getCount(); k++)
+				for(int k = 0; k < listSize; k++)
 				{
-					listOfNums.getData(k);
+					listOfNums[k];
 				}
-				listOfNums.insert(compare);
+				listOfNums[listSize];
+				listSize++;
 			}
 		}
 	}
 
-	return listOfNums;
+	return listSize++;
 }
 
 //function that begins counting all occurances of correlations
