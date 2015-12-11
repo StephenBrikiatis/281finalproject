@@ -7,9 +7,9 @@ int main()
 	bool exit = false;
 	string fileName;
 
-	Transaction* mainTransactions = new Transaction[1000];
+	Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
 	int transactionSize;
-	Correlation* mainCorrelations = new Correlation[100000];
+	Correlation* mainCorrelations = new Correlation[DATA_RANGE];
 	int correlationSize;
 
 	cout << "Welcome to New Horizon One's Apriori system. \n \n";
@@ -32,9 +32,19 @@ int main()
 			//DO APRIORI STUFF HERE
 
 			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
+			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
+
+			cout << "Size: " << transactionSize << endl;
+			cout << "Correlations 1-10: ";
+			for (int i = 0; i < 10; i++)
+			{
+				cout << mainCorrelations[i].getItem(0) << " ";
+			}
+
+			cout << endl;
 			////following two functions will load initial arrays
-			//mainTransactions.populateWithFile(string);
-			//mainCorrelations.populateFromTrans(mainTransactions);//this function needs to be made
+			//mainTransactions.populateWithFile(string); DONE
+			//mainCorrelations.populateFromTrans(mainTransactions); DONE
 
 			////main apriori loop
 			//while (correlationSize > 0)

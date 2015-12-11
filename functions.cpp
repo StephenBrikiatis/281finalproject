@@ -136,7 +136,7 @@ int populateWithFile(Transaction transactions[], string fileName)
 		data >> tmpItem;
 
 		transactions[transNum - 1].addItem(tmpItem); //-1 cause array positioning
-		transactions[transNum - 1].setSize(transactions[transNum - 1].getSize() + 1); //add to transaction's size
+		//transactions[transNum - 1].setSize(transactions[transNum - 1].getSize() + 1); //add to transaction's size
 			
 		if (tmpSize != transNum)
 		{
@@ -147,6 +147,17 @@ int populateWithFile(Transaction transactions[], string fileName)
 	data.close();
 
 	return tmpSize;
+}
+
+//makes initial list of possible correlations
+int populateInitCorrelations(Correlation correlations[], int maxSize)
+{
+	for (int i = 0; i < maxSize; i++)
+	{
+		correlations[i].add(i, 0);
+	}
+
+	return maxSize;
 }
 
 //function that begins counting all occurances of correlations
