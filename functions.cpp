@@ -119,7 +119,35 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream output)
 //	return listOfNums;
 //}
 
+//opens file and populates initial transactions
+int populateWithFile(Transaction transactions[], string fileName)
+{
+	//tmp variables for storing the data
+	int transNum;
+	int tmpItem;
+	int tmpSize = 0; //size of array
 
+	ifstream data;
+	data.open(fileName);
+
+	while (!data.eof())
+	{
+		data >> transNum;
+		data >> tmpItem;
+
+		transactions[transNum - 1].addItem(tmpItem); //-1 cause array positioning
+		//transactions[transNum - 1].setSize(transactions[transNum - 1].getSize() + 1); //add to transaction's size
+			
+		if (tmpSize != transNum)
+		{
+			tmpSize++;
+		}
+	}
+
+	data.close();
+
+	return tmpSize;
+}
 
 //makes initial list of possible correlations
 int populateInitCorrelations(Correlation correlations[], int maxSize)
@@ -309,36 +337,6 @@ string listOfFiles(int input)
 	default:
 		cout << "Not an input.";
 
-	}
-
-	//opens file and populates initial transactions
-	int populateWithFile(Transaction transactions[], string fileName)
-	{
-		//tmp variables for storing the data
-		int transNum;
-		int tmpItem;
-		int tmpSize = 0; //size of array
-
-		ifstream data;
-		data.open(fileName);
-
-		while (!data.eof())
-		{
-			data >> transNum;
-			data >> tmpItem;
-
-			transactions[transNum - 1].addItem(tmpItem); //-1 cause array positioning
-			//transactions[transNum - 1].setSize(transactions[transNum - 1].getSize() + 1); //add to transaction's size
-
-			if (tmpSize != transNum)
-			{
-				tmpSize++;
-			}
-		}
-
-		data.close();
-
-		return tmpSize;
 	}
 
 }
