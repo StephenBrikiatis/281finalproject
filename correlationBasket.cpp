@@ -52,4 +52,15 @@ Correlation& CorrelationBasket::getCorrelation(int choice)
 void CorrelationBasket::setCorrelation(Correlation &newCore, int choice)
 {
 	mCorrelations[choice] = newCore;
+	mSize++;
+}
+
+void CorrelationBasket::operator= (CorrelationBasket &rhs)
+{
+	mMinOccurance = rhs.getMinOccurance();
+	mSize = rhs.getSize();
+	for (int i = 0; i < mSize; i++)
+	{
+		mCorrelations[i] = rhs.getCorrelation(i);
+	}
 }

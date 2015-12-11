@@ -44,6 +44,7 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 	int numbersLength, r = 0, index = 0, coreCount = 0;
 
 	numbers = createListOfNums(currentBasket);
+	cout << "Pause for dramatic effect.";
 	numbersLength = numbers.getCount();
 
 	if(comboLength > numbersLength)

@@ -48,45 +48,34 @@
 
 int main()
 {
-	CorrelationBasket testBasket;
-	Correlation testCorrelation, tmp;
+	CorrelationBasket oldBasket, newBasket;
+	Correlation insert;
 
-	testCorrelation.add(1);
-	testCorrelation.add(2);
-	testCorrelation.add(3);
-	tmp.add(1);
-
-	testBasket.setCorrelation(testCorrelation, 0);
-
-	tmp = testBasket.getCorrelation(0);
-
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		cout << testBasket.getCorrelation(0).getItem(i);
+		insert.add(i);
+
+		if (i % 2 == 0)
+		{
+			insert.setRelevant(true);
+		}
+
+		oldBasket.setCorrelation(insert, i);
+		insert.clear();
 	}
 
-	//cout << testBasket.getCorrelation(0).getItem(0);
+	cout << oldBasket.getCorrelation(3).getItem(0);
 
-	//cout << endl << endl;
+	newBasket = createBasket(oldBasket, 2);
 
-	/*Transaction testTrans, tmp;
-	TransactionBasket testBasket;
+	cout << oldBasket.getCorrelation(3).getItem(0);
 
-	testTrans.addItem(9);
-	testTrans.addItem(8);
-	testTrans.addItem(7);
-
-	testBasket.setTransaction(testTrans, 0);
-
-	tmp = testBasket.getTransaction(0);
-
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < newBasket.getSize(); i++)
 	{
-		cout << tmp.getItem(i);
+		insert = newBasket.getCorrelation(i);
+		cout << insert.getItem(0);
 	}
 
-	cout << endl << endl;*/
-
-	system("pause");
+	pause();
 	return 0;
 }

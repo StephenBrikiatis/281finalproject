@@ -97,6 +97,7 @@ public:
 	bool searchFor(T searchKey);
 
 	T operator[](int index);
+	void operator=(LinkedList &rhs);
 };
 
 
@@ -569,6 +570,18 @@ template <typename T>
 T LinkedList<T>::operator[](int index)
 {
 	return getData(index);
+}
+
+template <typename T>
+void LinkedList<T>::operator=(LinkedList &rhs)
+{
+	int size = rhs.getCount();
+	clear();
+
+	for (int i = 0; i < size; i++)
+	{
+		insert(rhs.getData(i));
+	}
 }
 
 #endif

@@ -10,7 +10,7 @@ struct TransactionBasket
 {
 	private:
 		int mSize; //size of transaction basket
-		Transaction *mTransactionList = new Transaction[1000]; //list of all transactions basket is currently holding
+		Transaction *mTransactionList = new Transaction[mSize]; //list of all transactions basket is currently holding
 
 	public:	
 		//contructors

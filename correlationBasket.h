@@ -26,7 +26,7 @@ public:
 
 	void setCorrelation(Correlation &newCorrelation, int choice);
 
-	void operator=(CorrelationBasket &rhs)
+	void operator=(CorrelationBasket &rhs);
 };
 
 #endif
