@@ -84,29 +84,3 @@ void Transaction::operator= (Transaction& rhs)
 	mRelevant = rhs.getRelevant();
 	mSize = rhs.getSize();
 }
-
-var = false
-for (int i = 0 i < size of array1; i++)
-{
-	
-	for (int j = 0; j < size of array2; j++)
-	{
-		if (array1[i] == array2[j])
-		{
-			var = true;
-			break;
-		}
-		
-	}
-	if (var == true)
-	{
-		var = false;
-		continue;
-	}
-	else
-	{
-		return false;
-	}
-
-
-}
