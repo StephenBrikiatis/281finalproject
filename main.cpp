@@ -39,12 +39,13 @@ int main()
 			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
 
 			//LOOP WOULD BEGIN HERE
+			//UPDATE CURRENT OCCURANCES
 			updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
 
 			cout << "Correlation Occurances: " << endl;
-			for (int i = 0; i < 110; i++)
+			for (int i = 0; i < 150; i++)
 			{
-				cout << "Correlation " << i+1 << ": " << mainCorrelations[i].getOccurance() << endl;
+				cout << "Correlation " << i << ": " << mainCorrelations[i].getOccurance() << endl;
 			}
 
 			cout << endl;

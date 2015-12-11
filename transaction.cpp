@@ -5,7 +5,7 @@ Transaction::Transaction()
 {
 	for (int i = 0; i < ARRAY_SIZE; i++)
 	{
-		tItems[i] = 0;
+		tItems[i] = -1;
 	}
 	mSize = 0;
 	mRelevant = false;

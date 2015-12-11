@@ -168,16 +168,20 @@ void updateOccurances(Correlation currentCorrelations[], int correlationSize, Tr
 void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize)
 {
 	bool check = false;
+	int correlNum;
+	int transNum;
 
 	for (int i = 0; i < transactionSize; i++)
 	{
 		for (int j = 0; j < currentCorrelation.getSize(); j++)
 		{
-			int correlItem = currentCorrelation.getItem(j);
+			correlNum = currentCorrelation.getItem(j);
 
 			for (int k = 0; k < currentTransactions[i].getSize(); k++)
 			{
-				if (correlItem == currentTransactions[i].getItem(k))
+				transNum = currentTransactions[i].getItem(k);
+
+				if (correlNum == transNum)
 				{
 					check = true;
 					break;
@@ -186,16 +190,47 @@ void checkOccurance(Correlation &currentCorrelation, Transaction currentTransact
 
 			if (check == true && j == currentCorrelation.getSize() - 1)
 			{
-				//if item was found, and is last item in correlation, add to occurance
 				currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+				check = false;
 			}
 			else if (check == false)
 			{
-				//leave transaction, move to next one
 				break;
+			}
+			else
+			{
+				check = false;
 			}
 		}
 	}
+
+	//for (int i = 0; i < transactionSize; i++)
+	//{
+	//	for (int j = 0; j < currentCorrelation.getSize(); j++)
+	//	{
+	//		int correlItem = currentCorrelation.getItem(j);
+
+	//		for (int k = 0; k < currentTransactions[i].getSize(); k++)
+	//		{
+	//			if (correlItem == currentTransactions[i].getItem(k))
+	//			{
+	//				check = true;
+	//				break;
+	//			}
+	//		}
+
+	//		if (check == true && j == currentCorrelation.getSize() - 1)
+	//		{
+	//			//if item was found, and is last item in correlation, add to occurance
+	//			currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+	//		}
+	//		else if (check == false)
+	//		{
+	//			//leave transaction, move to next one
+	//			break;
+	//		}
+	//	}
+	//}
 }
 
 //compares current item sets to relevant correlations to determine which transactions are relevant or not
