@@ -154,7 +154,6 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 	for (int i = 0; i < maxSize; i++)
 	{
 		correlations[i].add(i, 0);
-		correlations[i].setRelevant(true);
 		correlations[i].setSize(1);
 	}
 
@@ -171,17 +170,23 @@ void updateOccurances(Correlation currentCorrelations[], int correlationSize, Tr
 }
 
 //goes through all transactions to see how many times a correlation occurs, by Gabe
-void checkOccurance(Correlation currentCorrelation, Transaction currentTransactions[], int transactionSize)
+void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize)
 {
 	bool check = false;
+	int correlNum;
+	int transNum;
 
 	for (int i = 0; i < transactionSize; i++)
 	{
 		for (int j = 0; j < currentCorrelation.getSize(); j++)
 		{
+			correlNum = currentCorrelation.getItem(j);
+
 			for (int k = 0; k < currentTransactions[i].getSize(); k++)
 			{
-				if (currentCorrelation.getItem(j) == currentTransactions[i].getItem(k))
+				transNum = currentTransactions[i].getItem(k);
+
+				if (correlNum == transNum)
 				{
 					check = true;
 					break;
@@ -190,16 +195,47 @@ void checkOccurance(Correlation currentCorrelation, Transaction currentTransacti
 
 			if (check == true && j == currentCorrelation.getSize() - 1)
 			{
-				//if item was found, and is last item in correlation, add to occurance
 				currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+				check = false;
 			}
 			else if (check == false)
 			{
-				//leave transaction, move to next one
 				break;
+			}
+			else
+			{
+				check = false;
 			}
 		}
 	}
+
+	//for (int i = 0; i < transactionSize; i++)
+	//{
+	//	for (int j = 0; j < currentCorrelation.getSize(); j++)
+	//	{
+	//		int correlItem = currentCorrelation.getItem(j);
+
+	//		for (int k = 0; k < currentTransactions[i].getSize(); k++)
+	//		{
+	//			if (correlItem == currentTransactions[i].getItem(k))
+	//			{
+	//				check = true;
+	//				break;
+	//			}
+	//		}
+
+	//		if (check == true && j == currentCorrelation.getSize() - 1)
+	//		{
+	//			//if item was found, and is last item in correlation, add to occurance
+	//			currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+	//		}
+	//		else if (check == false)
+	//		{
+	//			//leave transaction, move to next one
+	//			break;
+	//		}
+	//	}
+	//}
 }
 
 //compares current item sets to relevant correlations to determine which transactions are relevant or not
