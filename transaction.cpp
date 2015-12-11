@@ -45,3 +45,14 @@ int Transaction::getItem(int position)
 {
 	return tItems.getData(position);
 }
+
+//= operator overload 
+void Transaction::operator= (Transaction& rhs)
+{
+	tItems.clear();
+	for (int i = 0; i < rhs.getSize(); i++)
+	{
+		tItems.insert(rhs.getItem(i));
+	}
+	rhs.setRelevant(mRelevant);
+}

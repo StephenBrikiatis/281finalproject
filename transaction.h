@@ -23,6 +23,7 @@ struct Transaction
 	int getSize();
 	int getItem(int position);
 
+	void operator=(Transaction& rhs);
 };
 
 #endif

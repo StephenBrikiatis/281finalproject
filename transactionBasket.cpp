@@ -14,7 +14,14 @@ TransactionBasket::TransactionBasket(int newSize)
 	Transaction *transactionList = new Transaction[mSize];
 }
 
-TransactionBasket::TransactionBasket(string fileName)
+TransactionBasket::~TransactionBasket()
+{
+	/*mSize = NULL;
+	delete[] mTransactionList;*/
+}
+
+//opens file and populates initial transactions
+void TransactionBasket::populateWithFile(string fileName)
 {
 	//tmp variables for storing the data
 	int transNum;
@@ -41,12 +48,6 @@ TransactionBasket::TransactionBasket(string fileName)
 	data.close();
 
 	mSize = tmpSize;
-}
-
-TransactionBasket::~TransactionBasket()
-{
-	/*mSize = NULL;
-	delete[] mTransactionList;*/
 }
 
 //populates a new basket with the relevant transactions from the previous basket
@@ -85,7 +86,7 @@ void TransactionBasket::setSize(int size)
 }
 
 //getter for accessing specific transactions
-Transaction TransactionBasket::getTransaction(int position)
+Transaction& TransactionBasket::getTransaction(int position)
 {
 	return mTransactionList[position];
 }
