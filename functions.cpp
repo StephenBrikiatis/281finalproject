@@ -36,88 +36,84 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream output)
 	output << endl << endl;
 }
 
-//CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
-//{
-//	LinkedList<int> numbers;
-//	CorrelationBasket newBasket;
-//	Correlation holder, resetHolder;
-//	int numbersLength, r = 0, index = 0, coreCount = 0;
-//
-//	numbers = createListOfNums(currentBasket);
-//	cout << "Pause for dramatic effect.";
-//	numbersLength = numbers.getCount();
-//
-//	if(comboLength > numbersLength)
-//	{
-//		cout << "Can't make a combination with that few numbers" << endl;
-//		return newBasket;
-//	}
-//
-//	while(r >= 0)
-//	{
-//		if(index <= (numbersLength +(r -comboLength)))
-//		{
-//			holder.add(numbers.getData(index));
-//
-//			if(r == comboLength-1)
-//			{
-//				newBasket.setCorrelation(holder, coreCount);
-//				holder = resetHolder;
-//				coreCount++;
-//				index++;
-//			}
-//			else
-//			{
-//				index = (holder.getItem(r) + 1);
-//			}
-//		}
-//		else
-//		{
-//			r--;
-//			if(r > 0)
-//			{
-//				index = (holder.getItem(r) +1);
-//			}
-//			else
-//			{
-//				index = (holder.getItem(0) +1);
-//			}
-//		}
-//	}
-//
-//	return newBasket;
-//}
-//
-//LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
-//{
-//	LinkedList<int> listOfNums;
-//	int basketSize = 0, correSize = 0, compare;
-//	Correlation tmp;
-//	bool exists = false;
-//
-//	basketSize = currentBasket.getSize();
-//	tmp = currentBasket.getCorrelation(0);
-//	correSize = tmp.getSize();
-//
-//	for(int i = 0; i < basketSize; i++)
-//	{
-//		tmp = currentBasket.getCorrelation(i);
-//		if(tmp.getRelevant())
-//		{
-//			for(int j = 0; j < correSize; j++)
-//			{
-//				compare = tmp.getItem(j);
-//				for(int k = 0; k < listOfNums.getCount(); k++)
-//				{
-//					listOfNums.getData(k);
-//				}
-//				listOfNums.insert(compare);
-//			}
-//		}
-//	}
-//
-//	return listOfNums;
-//}
+int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
+{
+	int numbers[1000];
+	Correlation holder, resetHolder;
+	int numbersLength, r = 0, index = 0, coreCount = 0;
+
+	numbersLength = createListOfNums(numbers, currentCore, coreArraySize);
+	cout << "Pause for dramatic effect.";
+
+	if(comboLength > numbersLength)
+	{
+		cout << "Can't make a combination with that few numbers" << endl;
+	}
+
+	while(r >= 0)
+	{
+		if(index <= (numbersLength +(r -comboLength)))
+		{
+			holder.add(numbers[index], r);
+
+			if(r == comboLength-1)
+			{
+				currentCore[coreCount] = holder;
+				holder = resetHolder;
+				coreCount++;
+				index++;
+			}
+			else
+			{
+				index = (holder.getItem(r) + 1);
+			}
+		}
+		else
+		{
+			r--;
+			if(r > 0)
+			{
+				index = (holder.getItem(r) +1);
+			}
+			else
+			{
+				index = (holder.getItem(0) +1);
+			}
+		}
+	}
+
+	return coreCount;
+}
+
+int createListOfNums(int listOfNums[], Correlation listOfCores[], int size)
+{
+	int correSize = 0, compare, listSize = 0;
+	Correlation tmp;
+	bool exists = false;
+
+	tmp = listOfCores[0];
+	correSize = tmp.getSize();
+
+	for(int i = 0; i < size; i++)
+	{
+		tmp = listOfCores[i];
+		if(tmp.getRelevant())
+		{
+			for(int j = 0; j < correSize; j++)
+			{
+				compare = tmp.getItem(j);
+				for(int k = 0; k < listSize; k++)
+				{
+					listOfNums[k];
+				}
+				listOfNums[listSize];
+				listSize++;
+			}
+		}
+	}
+
+	return listSize++;
+}
 
 //opens file and populates initial transactions
 int populateWithFile(Transaction transactions[], string fileName)
@@ -136,8 +132,6 @@ int populateWithFile(Transaction transactions[], string fileName)
 		data >> tmpItem;
 
 		transactions[transNum - 1].addItem(tmpItem); //-1 cause array positioning
-		//transactions[transNum - 1].setSize(transactions[transNum - 1].getSize() + 1); //add to transaction's size
-			
 		if (tmpSize != transNum)
 		{
 			tmpSize++;
@@ -340,3 +334,4 @@ string listOfFiles(int input)
 	}
 
 }
+
