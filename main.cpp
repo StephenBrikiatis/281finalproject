@@ -5,6 +5,7 @@ int main()
 	//initial variables
 	int minimumOccurance; //variable for setting the minimum occurance that will be checked for
 	bool exit = false;
+	bool correlationsLeft = true;
 	string fileName;
 
 	Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
@@ -32,7 +33,7 @@ int main()
 			//DO APRIORI STUFF HERE
 			cout << "What is the occurance limit you want to set for the correlations? ";
 			cin >> minimumOccurance;
-			cout << endl << endl;
+			cout << endl << endl << "Please Wait... " << endl << endl;
 
 			//INITIAL POPULATIONS
 			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
@@ -43,12 +44,24 @@ int main()
 			updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
 
 			cout << "Correlation Occurances: " << endl;
-			for (int i = 0; i < 150; i++)
+			for (int i = 0; i < 100; i++)
 			{
 				cout << "Correlation " << i << ": " << mainCorrelations[i].getOccurance() << endl;
 			}
 
 			cout << endl;
+
+			//UPDATE CORRELATION RELEVANCE
+			correlationsLeft = correlationRelevance(mainCorrelations, correlationSize, minimumOccurance);
+
+			cout << "Correlation Occurances: " << endl;
+			for (int i = 0; i < 100; i++)
+			{
+				if (mainCorrelations[i].getRelevant() == true)
+					cout << "Correlation " << i << ": " << "RELEVANT" << endl;
+				else
+					cout << "Correlation " << i << ": " << "NOT" << endl;
+			}
 			////following two functions will load initial arrays
 			//mainTransactions.populateWithFile(string); DONE
 			//mainCorrelations.populateFromTrans(mainTransactions); DONE
@@ -58,7 +71,7 @@ int main()
 			//{
 
 			//	//this function will check how many times each correlation occurs
-			//	updateOccurances(mainCorrelations, correlationsize, mainTransactions, transactionsize);
+			//	updateOccurances(mainCorrelations, correlationsize, mainTransactions, transactionsize); DONE
 
 			//	//PRUNE CORRELATIONS HERE, FUNCTION HAS YET TO BE DEFINED
 			//	createBasket / createListOfNums

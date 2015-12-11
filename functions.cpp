@@ -209,33 +209,6 @@ void checkOccurance(Correlation &currentCorrelation, Transaction currentTransact
 		}
 	}
 
-	//for (int i = 0; i < transactionSize; i++)
-	//{
-	//	for (int j = 0; j < currentCorrelation.getSize(); j++)
-	//	{
-	//		int correlItem = currentCorrelation.getItem(j);
-
-	//		for (int k = 0; k < currentTransactions[i].getSize(); k++)
-	//		{
-	//			if (correlItem == currentTransactions[i].getItem(k))
-	//			{
-	//				check = true;
-	//				break;
-	//			}
-	//		}
-
-	//		if (check == true && j == currentCorrelation.getSize() - 1)
-	//		{
-	//			//if item was found, and is last item in correlation, add to occurance
-	//			currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
-	//		}
-	//		else if (check == false)
-	//		{
-	//			//leave transaction, move to next one
-	//			break;
-	//		}
-	//	}
-	//}
 }
 
 //compares current item sets to relevant correlations to determine which transactions are relevant or not
@@ -282,6 +255,33 @@ void updateRelevant(Transaction currentTransaction, Correlation currentCorrelati
 		{
 			break;
 		}
+	}
+}
+
+//goes through all correlations and updates their relevance by Gabe
+bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance)
+{
+	int count = 0;
+
+	for (int i = 0; i < correlationSize; i++)
+	{
+		if (currentCorrelations[i].getOccurance() < minOccurance)
+		{
+			currentCorrelations[i].setRelevant(false);
+		}
+		else
+		{
+			count++;
+		}		
+	}
+
+	if (count <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
 	}
 }
 

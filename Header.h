@@ -29,6 +29,9 @@ void checkOccurance(Correlation &currentCorrelation, Transaction currentTransact
 void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize);
 void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize);
 
+//function that determines relevance for all correlations
+bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance);
+
 string listOfFiles(int input);
 
 #endif
