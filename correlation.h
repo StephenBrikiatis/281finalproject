@@ -26,6 +26,7 @@ public:
 	int getSize();
 
 	int getItem(int position);
+	void clear();
 
 	//operator overloads
 

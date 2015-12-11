@@ -52,6 +52,13 @@ int Correlation::getItem(int position)
 	return cItems.getData(position);
 }
 
+void::Correlation::clear()
+{
+	cItems.clear();
+	mOccurance = 0;
+	mRelevant = false;
+}
+
 //= operator overload 
 void Correlation::operator= (Correlation& rhs)
 {
