@@ -19,13 +19,14 @@ CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength)
 LinkedList<int> createListOfNums(CorrelationBasket currentBasket);
 void populateWithFile(string fileName);
 
+bool checkIfExists(int item, int itemArray[], int arraySize);
+
 //functions that use both classes
-void updateOccurances(CorrelationBasket currentCorrelations, TransactionBasket currentTransactions);
-void checkOccurance(Correlation currentCorrelation, TransactionBasket currentTransactions);
+void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize);
+void checkOccurance(Correlation currentCorrelation, Transaction currentTransactions[], int transactionSize);
 
-
-void compare(TransactionBasket currentTransactions, CorrelationBasket currentCorrelations);
-void updateRelevant(Transaction currentTransaction, CorrelationBasket currentCorrelations);
+void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize);
+void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize);
 
 string listOfFiles(int input);
 

@@ -120,40 +120,42 @@ LinkedList<int> createListOfNums(CorrelationBasket currentBasket)
 }
 
 //function that begins counting all occurances of correlations
-void updateOccurances(CorrelationBasket currentCorrelations, TransactionBasket currentTransactions)
+void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize)
 {
-	for (int i = 0; i < currentCorrelations.getSize(); i++)
+	for (int i = 0; i < correlationSize; i++)
 	{
-		checkOccurance(currentCorrelations.getCorrelation(i), currentTransactions);
+		checkOccurance(currentCorrelations[i], currentTransactions, transactionSize);
 	}
 }
 
 //goes through all transactions to see how many times a correlation occurs, by Gabe
-void checkOccurance(Correlation currentCorrelation, TransactionBasket currentTransactions)
+void checkOccurance(Correlation currentCorrelation, Transaction currentTransactions[], int transactionSize)
 {
-	Transaction tmpTransaction;
-	int itemCheck = 0;
-	bool correlationFound;
+	bool check = false;
 
-	//go through every transaction
-	for (int i = 0; i < currentTransactions.getSize(); i++)
+	for (int i = 0; i < transactionSize; i++)
 	{
-		tmpTransaction = currentTransactions.getTransaction(i);
-		correlationFound = true;
-
-		//accessing every number in Correlation
-		for (int j = 0; currentCorrelation.getSize(); j++)
+		for (int j = 0; j < currentCorrelation.getSize(); j++)
 		{
-			if (!tmpTransaction.checkIfExists(currentCorrelation.getItem(j)))
+			for (int k = 0; k < currentTransactions[i].getSize(); k++)
 			{
-				correlationFound = false;
+				if (currentCorrelation.getItem(j) == currentTransactions[i].getItem(k))
+				{
+					check = true;
+					break;
+				}
 			}
-		}
 
-		//update occurance accordingly
-		if (correlationFound)
-		{
-			currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+			if (check == true && j == currentCorrelation.getSize() - 1)
+			{
+				//if item was found, and is last item in correlation, add to occurance
+				currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+			}
+			else if (check == false)
+			{
+				//leave transaction, move to next one
+				break;
+			}
 		}
 	}
 }
