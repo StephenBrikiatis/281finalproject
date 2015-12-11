@@ -7,9 +7,40 @@ CorrelationBasket::CorrelationBasket()
 	mMinOccurance = 0;
 }
 
+CorrelationBasket::CorrelationBasket(int newSize)
+{
+	mSize = newSize;
+	Correlation *mCorrelations = new Correlation[mSize];
+}
+
 CorrelationBasket::~CorrelationBasket()
 {
 
+}
+
+//populates a new basket with the relevant correlations from the previous basket
+void CorrelationBasket::populate (CorrelationBasket otherBasket)
+{
+	Correlation *tmpList = new Correlation[mSize]; //tmp list to copy relevant transactions
+	int tmpSize = 0; //keeps track of new transactions to determine new size
+
+	//fill temp list
+	for (int i = 0; i < mSize; i++)
+	{
+		if (otherBasket.getCorrelation(i).getRelevant() == true)
+		{
+			tmpList[tmpSize] = otherBasket.getCorrelation(i);
+			tmpSize++;
+		}
+	}
+
+	//populate actual list
+	for (int j = 0; j < tmpSize; j++)
+	{
+		mCorrelations[j] = tmpList[j];
+	}
+
+	mSize = tmpSize;
 }
 
 //goes through all correlations and updates their relevance by Gabe

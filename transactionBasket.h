@@ -16,17 +16,17 @@ struct TransactionBasket
 		//contructors
 		TransactionBasket();
 		TransactionBasket(int newSize);
-		TransactionBasket(string fileName);
 		~TransactionBasket();
 
 		//functions
+		void populateWithFile(string fileName);
 		void populate(TransactionBasket otherBasket);
 
 		//getters/setters
 		int getSize();
 		void setSize(int size);
 
-		Transaction getTransaction(int position);
+		Transaction& getTransaction(int position);
 		void setTransaction(Transaction &newTrans, int choice);
 };
 

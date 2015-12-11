@@ -13,8 +13,11 @@ private:
 
 public:
 	CorrelationBasket();
+	CorrelationBasket(int newSize);
 	~CorrelationBasket();
 
+	//functions
+	void populate(CorrelationBasket otherBasket);
 	void updateRelevance();
 
 	int getSize();
