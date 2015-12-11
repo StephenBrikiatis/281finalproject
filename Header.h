@@ -4,7 +4,7 @@
 #include "transactionBasket.h"
 #include "correlationBasket.h"
 
-const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000;
+const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000, DATA_RANGE = 1000;
 
 
 //database library
@@ -17,9 +17,10 @@ bool checkUserInput(string input);
 void printCorrelations(Correlation currentBasket[], int size, ofstream output);
 void createBasket(CorrelationBasket currentBasket, int comboLength);
 int createListOfNums(int listOfNums[], Correlation listOfCores[], int size);
-int populateWithFile(Transaction transactions[], string fileName);
 
-bool checkIfExists(int item, int itemArray[], int arraySize);
+//init populates
+int populateWithFile(Transaction transactions[], string fileName);
+int populateInitCorrelations(Correlation correlations[], int maxSize);
 
 //functions that use both classes
 void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize);
