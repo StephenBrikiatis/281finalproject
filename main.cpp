@@ -77,9 +77,7 @@ int main()
 	}
 	*/
 
-	Correlation *newArray = new Correlation[1000];
-
-
+	
 
 	pause();
 	return 0;

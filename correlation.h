@@ -7,16 +7,17 @@
 struct Correlation
 {
 private:
-	LinkedList<int> cItems;
+	int cItems[50];
 	int mOccurance;
 	bool mRelevant;
+	int mSize;
 
 public:
 	//contructors
 	Correlation();
 	~Correlation();
 
-	void add(int cItem); //add item to correlation
+	void add(int cItem, int position); //add item to correlation
 
 	//getters and setters
 	int getOccurance();
@@ -24,6 +25,7 @@ public:
 	bool getRelevant();
 	void setRelevant(bool newRelevant);
 	int getSize();
+	void setSize(int size);
 
 	int getItem(int position);
 	void clear();

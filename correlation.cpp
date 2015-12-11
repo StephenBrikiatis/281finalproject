@@ -9,15 +9,18 @@ Correlation::Correlation()
 }
 Correlation::~Correlation()
 {
-	cItems.clear();
+	for (int i = 0; i < 50; i++)
+	{
+		cItems[i] = 0;
+	}
 	mOccurance = NULL;
 	mRelevant = NULL;
 }
 
 //adds item to the correlation
-void Correlation::add(int cItem)
+void Correlation::add(int cItem, int position)
 {
-	cItems.insert(cItem);
+	cItems[position] = cItem;
 }
 
 //getters and setters for occurance
@@ -43,29 +46,38 @@ void Correlation::setRelevant(bool newRelevant)
 //getters and setters for the size member
 int Correlation::getSize()
 {
-	return cItems.getCount();
+	return mSize;
+}
+
+void Correlation::setSize(int size)
+{
+	mSize = size;
 }
 
 //get specific item from linked list
 int Correlation::getItem(int position)
 {
-	return cItems.getData(position);
+	return cItems[position];
 }
 
 void::Correlation::clear()
 {
-	cItems.clear();
+	for (int i = 0; i < 50; i++)
+	{
+		cItems[i] = 0;
+	}
 	mOccurance = 0;
+	mSize = 0;
 	mRelevant = false;
 }
 
 //= operator overload 
 void Correlation::operator= (Correlation& rhs)
 {
-	cItems.clear();
+	clear();
 	for (int i = 0; i < rhs.getSize(); i++)
 	{
-		cItems.insert(rhs.getItem(i));
+		cItems[i] = rhs.getItem(i);
 	}
 	rhs.setOccurance(mOccurance);
 	rhs.setRelevant(mRelevant);

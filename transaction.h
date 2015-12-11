@@ -4,10 +4,13 @@
 
 #include "common.h"
 
+const int ARRAY_SIZE = 50;
+
 struct Transaction
 {
   private:
-    LinkedList<int> tItems;
+	int tItems[ARRAY_SIZE];
+	int mSize;
     bool mRelevant;
 
   public:
@@ -21,7 +24,9 @@ struct Transaction
     bool getRelevant();
     void setRelevant(bool newRelevant);
 	int getSize();
+	void setSize(int size);
 	int getItem(int position);
+	void clear();
 
 	void operator=(Transaction& rhs);
 };

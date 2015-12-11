@@ -3,6 +3,11 @@
 
 Transaction::Transaction()
 {
+	for (int i = 0; i < ARRAY_SIZE; i++)
+	{
+		tItems[i] = 0;
+	}
+	mSize = 0;
 	mRelevant = false;
 }
 
@@ -18,12 +23,21 @@ Transaction::~Transaction()
 
 void Transaction::addItem(int item)
 {
-	tItems.insert(item);
+	tItems[mSize] = item;
+	mSize++;
 }
 
 bool Transaction::checkIfExists(int item)
 {
-	return tItems.isExist(item);
+	for (int i = 0; i < mSize; i++)
+	{
+		if (tItems[i] == item)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 bool Transaction::getRelevant()
@@ -38,21 +52,61 @@ void Transaction::setRelevant(bool relevent)
 
 int Transaction::getSize()
 {
-	return tItems.getCount();
+	return mSize;
+}
+
+void Transaction::setSize(int size)
+{
+	mSize = size;
 }
 
 int Transaction::getItem(int position)
 {
-	return tItems.getData(position);
+	return tItems[position];
+}
+
+void Transaction::clear()
+{
+	for (int i = 0; i < ARRAY_SIZE; i++)
+	{
+		tItems[i] = 0;
+	}
 }
 
 //= operator overload 
 void Transaction::operator= (Transaction& rhs)
 {
-	tItems.clear();
+	clear();
 	for (int i = 0; i < rhs.getSize(); i++)
 	{
-		tItems.insert(rhs.getItem(i));
+		tItems[i] = rhs.getItem(i);
 	}
-	rhs.setRelevant(mRelevant);
+	mRelevant = rhs.getRelevant();
+	mSize = rhs.getSize();
+}
+
+var = false
+for (int i = 0 i < size of array1; i++)
+{
+	
+	for (int j = 0; j < size of array2; j++)
+	{
+		if (array1[i] == array2[j])
+		{
+			var = true;
+			break;
+		}
+		
+	}
+	if (var == true)
+	{
+		var = false;
+		continue;
+	}
+	else
+	{
+		return false;
+	}
+
+
 }

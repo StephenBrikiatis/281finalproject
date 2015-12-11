@@ -4,7 +4,8 @@
 #include "transactionBasket.h"
 #include "correlationBasket.h"
 
-const int DATABASE_SIZE = 27;
+const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000;
+
 
 //database library
 const string database[DATABASE_SIZE] = { "T5.N0.1K.D1K", "T5.N0.1K.D10K", "T5.N0.1K.D100K", "T5.N0.5K.D1K", "T5.N0.5K.D10K", "T5.N0.5K.D100K", "T5.N1K.D1K", "T5.N1K.D10K", "T5.N1K.D100K",
@@ -16,6 +17,7 @@ bool checkUserInput(string input);
 void printCorrelations(CorrelationBasket currentBasket, ofstream output);
 CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength);
 LinkedList<int> createListOfNums(CorrelationBasket currentBasket);
+void populateWithFile(string fileName);
 
 //functions that use both classes
 void updateOccurances(CorrelationBasket currentCorrelations, TransactionBasket currentTransactions);
