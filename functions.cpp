@@ -42,8 +42,14 @@ int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
 	Correlation holder, resetHolder;
 	int numbersLength, r = 0, index = 0, coreCount = 0;
 
+	for (int i = 0; i < 50; i++)
+	{
+		holder.add(0, i);
+		resetHolder.add(0, i);
+	}
+
 	numbersLength = createListOfNums(numbers, currentCore, coreArraySize);
-	cout << "Pause for dramatic effect.";
+	cout << "Pause for dramatic effect." << endl;
 
 	if(comboLength > numbersLength)
 	{
@@ -66,6 +72,7 @@ int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
 			else
 			{
 				index = (holder.getItem(r) + 1);
+				r++;
 			}
 		}
 		else
@@ -91,22 +98,20 @@ int createListOfNums(int listOfNums[], Correlation listOfCores[], int size)
 	Correlation tmp;
 	bool exists = false;
 
-	tmp = listOfCores[0];
-	correSize = tmp.getSize();
+	correSize = listOfCores[0].getSize();
 
 	for(int i = 0; i < size; i++)
 	{
-		tmp = listOfCores[i];
-		if(tmp.getRelevant())
+		if(listOfCores[i].getRelevant())
 		{
 			for(int j = 0; j < correSize; j++)
 			{
-				compare = tmp.getItem(j);
+				compare = listOfCores[i].getItem(j);
 				for(int k = 0; k < listSize; k++)
 				{
 					listOfNums[k];
 				}
-				listOfNums[listSize];
+				listOfNums[listSize] = compare;
 				listSize++;
 			}
 		}
@@ -149,6 +154,8 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 	for (int i = 0; i < maxSize; i++)
 	{
 		correlations[i].add(i, 0);
+		correlations[i].setRelevant(true);
+		correlations[i].setSize(1);
 	}
 
 	return maxSize;

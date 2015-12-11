@@ -15,7 +15,7 @@ const string database[DATABASE_SIZE] = { "T5.N0.1K.D1K", "T5.N0.1K.D10K", "T5.N0
 
 bool checkUserInput(string input);
 void printCorrelations(Correlation currentBasket[], int size, ofstream output);
-void createBasket(CorrelationBasket currentBasket, int comboLength);
+int createBasket(Correlation currentCore[], int coreArraySize, int comboLength);
 int createListOfNums(int listOfNums[], Correlation listOfCores[], int size);
 
 //init populates
