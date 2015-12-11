@@ -7,9 +7,9 @@ int main()
 	bool exit = false;
 	string fileName;
 
-	Transaction mainTransactions[1000];
+	Transaction* mainTransactions = new Transaction[1000];
 	int transactionSize;
-	Correlation mainCorrelations[100000];
+	Correlation* mainCorrelations = new Correlation[100000];
 	int correlationSize;
 
 	cout << "Welcome to New Horizon One's Apriori system. \n \n";
@@ -31,28 +31,29 @@ int main()
 		{
 			//DO APRIORI STUFF HERE
 
-			//following two functions will load initial arrays
-			mainTransactions.populateWithFile(string);
-			mainCorrelations.populateFromTrans(mainTransactions);//this function needs to be made
+			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
+			////following two functions will load initial arrays
+			//mainTransactions.populateWithFile(string);
+			//mainCorrelations.populateFromTrans(mainTransactions);//this function needs to be made
 
-			//main apriori loop
-			while (correlationSize > 0)
-			{
+			////main apriori loop
+			//while (correlationSize > 0)
+			//{
 
-				//this function will check how many times each correlation occurs
-				updateOccurances(mainCorrelations, correlationsize, mainTransactions, transactionsize);
+			//	//this function will check how many times each correlation occurs
+			//	updateOccurances(mainCorrelations, correlationsize, mainTransactions, transactionsize);
 
-				//PRUNE CORRELATIONS HERE, FUNCTION HAS YET TO BE DEFINED
-				createBasket / createListOfNums
+			//	//PRUNE CORRELATIONS HERE, FUNCTION HAS YET TO BE DEFINED
+			//	createBasket / createListOfNums
 
-				//PRUNE TRANSACTIONS HERE
-				compare(mainTransactions)
+			//	//PRUNE TRANSACTIONS HERE
+			//	compare(mainTransactions)
 
-				//Output results and time!
-				printCorrelations()
-			}
+			//	//Output results and time!
+			//	printCorrelations()
+			//}
 
-			//REPEAT UNTIL NO MORE CORRELATIONS
+			////REPEAT UNTIL NO MORE CORRELATIONS
 		}
 		else
 		{
@@ -64,50 +65,50 @@ int main()
 	return 0;
 }
 
-int main()
-{
-	/*CorrelationBasket oldBasket, newBasket;
-	Correlation insert;
-
-	for (int i = 0; i < 20; i++)
-	{
-		insert.add(i);
-
-		if (i % 2 == 0)
-		{
-			insert.setRelevant(true);
-		}
-
-		oldBasket.setCorrelation(insert, i);
-		insert.clear();
-	}
-
-	cout << oldBasket.getCorrelation(3).getItem(0);
-
-	newBasket = createBasket(oldBasket, 2);
-
-	cout << oldBasket.getCorrelation(3).getItem(0);
-
-	for (int i = 0; i < newBasket.getSize(); i++)
-	{
-		insert = newBasket.getCorrelation(i);
-		cout << insert.getItem(0);
-	}
-	*/
-
-
-	
-
-	/*Correlation *newArray = new Correlation[1000];
-
-	newArray[0].add(1);
-
-	cout << newArray[0].getItem(0);
-
-
-	pause();
-	return 0;*/
-}
+//int main()
+//{
+//	/*CorrelationBasket oldBasket, newBasket;
+//	Correlation insert;
+//
+//	for (int i = 0; i < 20; i++)
+//	{
+//		insert.add(i);
+//
+//		if (i % 2 == 0)
+//		{
+//			insert.setRelevant(true);
+//		}
+//
+//		oldBasket.setCorrelation(insert, i);
+//		insert.clear();
+//	}
+//
+//	cout << oldBasket.getCorrelation(3).getItem(0);
+//
+//	newBasket = createBasket(oldBasket, 2);
+//
+//	cout << oldBasket.getCorrelation(3).getItem(0);
+//
+//	for (int i = 0; i < newBasket.getSize(); i++)
+//	{
+//		insert = newBasket.getCorrelation(i);
+//		cout << insert.getItem(0);
+//	}
+//	*/
+//
+//
+//	
+//
+//	/*Correlation *newArray = new Correlation[1000];
+//
+//	newArray[0].add(1);
+//
+//	cout << newArray[0].getItem(0);
+//
+//
+//	pause();
+//	return 0;*/
+//}
 
 //int main() //yet another main!!!
 //{

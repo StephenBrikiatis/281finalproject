@@ -17,7 +17,7 @@ bool checkUserInput(string input);
 void printCorrelations(Correlation currentBasket[], int size, ofstream output);
 CorrelationBasket createBasket(CorrelationBasket currentBasket, int comboLength);
 LinkedList<int> createListOfNums(CorrelationBasket currentBasket);
-void populateWithFile(string fileName);
+int populateWithFile(Transaction transactions[], string fileName);
 
 bool checkIfExists(int item, int itemArray[], int arraySize);
 
