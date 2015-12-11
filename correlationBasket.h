@@ -26,7 +26,6 @@ public:
 	void setMinOccurance(int size);
 
 	Correlation& getCorrelation(int choice);
-
 	void setCorrelation(Correlation &newCorrelation, int choice);
 
 	void operator=(CorrelationBasket &rhs);

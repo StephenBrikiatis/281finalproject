@@ -18,6 +18,7 @@ struct Transaction
     void addItem(int item);
 	bool checkIfExists(int item);
     
+	//accessors
     bool getRelevant();
     void setRelevant(bool newRelevant);
 	int getSize();

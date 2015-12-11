@@ -17,16 +17,15 @@ public:
 	~Correlation();
 
 	void add(int cItem); //add item to correlation
-
+	void clear();
+	int getItem(int position);
+	
 	//getters and setters
 	int getOccurance();
 	void setOccurance(int newOccurance);
 	bool getRelevant();
 	void setRelevant(bool newRelevant);
 	int getSize();
-
-	int getItem(int position);
-	void clear();
 
 	//operator overloads
 
