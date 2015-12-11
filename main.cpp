@@ -80,7 +80,7 @@ int main()
 
 	
 
-	Correlation *newArray = new Correlation[1000];
+	/*Correlation *newArray = new Correlation[1000];
 
 	newArray[0].add(1);
 
@@ -88,5 +88,21 @@ int main()
 
 
 	pause();
-	return 0;
+	return 0;*/
+}
+
+int main() //yet another main!!!
+{
+	Correlation cHolder;
+	Transaction tHolder;
+	int input;
+	string userInput;
+	
+	do
+	{
+		cout << "Enter file name: ";
+		cin >> userInput;
+
+	} while (userInput != "exit");
+
 }

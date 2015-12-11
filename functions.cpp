@@ -299,3 +299,8 @@ string listOfFiles(int input)
 	}
 
 }
+
+double processFile(string fileName)
+{
+
+}
