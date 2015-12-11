@@ -112,7 +112,7 @@ int createListOfNums(int listOfNums[], Correlation listOfCores[], int size)
 		}
 	}
 
-	return listSize++;
+	return listSize;
 }
 
 //opens file and populates initial transactions
