@@ -22,7 +22,7 @@ public:
 	int getMinOccurance();
 	void setMinOccurance(int size);
 
-	Correlation getCorrelation(int choice);
+	Correlation& getCorrelation(int choice);
 
 	void setCorrelation(Correlation &newCorrelation, int choice);
 };

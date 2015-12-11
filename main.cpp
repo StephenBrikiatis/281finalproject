@@ -58,32 +58,34 @@ int main()
 
 	testBasket.setCorrelation(testCorrelation, 0);
 
-	tmp = testCorrelation;
+	tmp = testBasket.getCorrelation(0);
 
 	for (int i = 0; i < 3; i++)
 	{
-		
+		cout << testBasket.getCorrelation(0).getItem(i);
 	}
-	cout << testBasket.getCorrelation(0).getItem(0);
+
 	//cout << testBasket.getCorrelation(0).getItem(0);
 
-	cout << endl << endl;
+	//cout << endl << endl;
 
-	Transaction testTrans;
-	TransactionBasket testTransB;
+	/*Transaction testTrans, tmp;
+	TransactionBasket testBasket;
 
 	testTrans.addItem(9);
 	testTrans.addItem(8);
 	testTrans.addItem(7);
 
-	testTransB.setTransaction(testTrans, 0);
+	testBasket.setTransaction(testTrans, 0);
+
+	tmp = testBasket.getTransaction(0);
 
 	for (int i = 0; i < 3; i++)
 	{
-		//cout << testTransB.getTransaction(0).getItem(0);
+		cout << tmp.getItem(i);
 	}
 
-	cout << endl << endl;
+	cout << endl << endl;*/
 
 	system("pause");
 	return 0;

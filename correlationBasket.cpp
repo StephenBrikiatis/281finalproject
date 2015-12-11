@@ -44,7 +44,7 @@ void CorrelationBasket::setMinOccurance(int occurance)
 	mMinOccurance = occurance;
 }
 
-Correlation CorrelationBasket::getCorrelation(int choice)
+Correlation& CorrelationBasket::getCorrelation(int choice)
 {
 	return mCorrelations[choice];
 }
