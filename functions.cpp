@@ -161,49 +161,50 @@ void checkOccurance(Correlation currentCorrelation, Transaction currentTransacti
 }
 
 //compares current item sets to relevant correlations to determine which transactions are relevant or not
-void compare(TransactionBasket currentTransactions, CorrelationBasket currentCorrelations)
+void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize)
 {
-	for (int i = 0; i < currentTransactions.getSize(); i++)
+	for (int i = 0; i < transactionSize; i++)
 	{
-		updateRelevant(currentTransactions.getTransaction(i), currentCorrelations);
+		updateRelevant(currentTransactions[i], currentCorrelations, correlationSize);
 	}
 }
 
-void updateRelevant(Transaction currentTransaction, CorrelationBasket currentCorrelations)
+void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize)
 {
-	Correlation tmpCorr;
-	bool isRelavent = false;
-	int itemCheck = 0;
+	bool isRelevant;
 
 	//loop accessing correlations in basket
-	for (int i = 0; i < currentCorrelations.getSize(); i++)
+	for (int i = 0; i < correlationSize; i++)
 	{
-		tmpCorr = currentCorrelations.getCorrelation(i);
-
-		bool itemsFound = true;
-		//loop accessing numbers in correlation
-		for (int j = 0; j < tmpCorr.getSize(); j++)
+		isRelevant = false;
+		for (int j = 0; j < currentCorrelations[i].getSize(); j++)
 		{
-			itemCheck = tmpCorr.getItem(j);
-
-			//checks if item exists in transaction
-			if (currentTransaction.checkIfExists(itemCheck))
+			for (int k = 0; k < currentTransaction.getSize(); k++)
 			{
-				itemsFound = false;
+				if (currentCorrelations[i].getItem(j) == currentTransaction.getItem(k))
+				{
+					isRelevant = true;
+					break;
+				}
+			}
+
+			if (isRelevant == true && j == currentCorrelations[i].getSize() - 1)
+			{
+				//if item was found, and is last item in correlation, set relevance
+				currentTransaction.setRelevant(true);
+			}
+			else if (isRelevant == false)
+			{
+				//leave correlation, move to next one
 				break;
 			}
 		}
 
-		//breaks loop if a correlation is found in a transaction
-		if (itemsFound == true)
+		if (isRelevant == true)
 		{
-			isRelavent = true;
 			break;
 		}
 	}
-
-	//updates relavence
-	currentTransaction.setRelevant(isRelavent);
 }
 
 //simple list of possible files
