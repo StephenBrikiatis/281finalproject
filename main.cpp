@@ -48,7 +48,7 @@
 
 int main()
 {
-	CorrelationBasket oldBasket, newBasket;
+	/*CorrelationBasket oldBasket, newBasket;
 	Correlation insert;
 
 	for (int i = 0; i < 20; i++)
@@ -75,6 +75,11 @@ int main()
 		insert = newBasket.getCorrelation(i);
 		cout << insert.getItem(0);
 	}
+	*/
+
+	Correlation *newArray = new Correlation[1000];
+
+
 
 	pause();
 	return 0;
