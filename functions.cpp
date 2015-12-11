@@ -149,6 +149,7 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 	for (int i = 0; i < maxSize; i++)
 	{
 		correlations[i].add(i, 0);
+		correlations[i].setSize(1);
 	}
 
 	return maxSize;
@@ -164,7 +165,7 @@ void updateOccurances(Correlation currentCorrelations[], int correlationSize, Tr
 }
 
 //goes through all transactions to see how many times a correlation occurs, by Gabe
-void checkOccurance(Correlation currentCorrelation, Transaction currentTransactions[], int transactionSize)
+void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize)
 {
 	bool check = false;
 
@@ -172,9 +173,11 @@ void checkOccurance(Correlation currentCorrelation, Transaction currentTransacti
 	{
 		for (int j = 0; j < currentCorrelation.getSize(); j++)
 		{
+			int correlItem = currentCorrelation.getItem(j);
+
 			for (int k = 0; k < currentTransactions[i].getSize(); k++)
 			{
-				if (currentCorrelation.getItem(j) == currentTransactions[i].getItem(k))
+				if (correlItem == currentTransactions[i].getItem(k))
 				{
 					check = true;
 					break;

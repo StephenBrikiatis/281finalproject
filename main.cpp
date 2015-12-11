@@ -30,15 +30,21 @@ int main()
 		else if (checkUserInput(fileName))
 		{
 			//DO APRIORI STUFF HERE
+			cout << "What is the occurance limit you want to set for the correlations? ";
+			cin >> minimumOccurance;
+			cout << endl << endl;
 
+			//INITIAL POPULATIONS
 			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
 			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
 
-			cout << "Size: " << transactionSize << endl;
-			cout << "Correlations 1-10: ";
-			for (int i = 0; i < 10; i++)
+			//LOOP WOULD BEGIN HERE
+			updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
+
+			cout << "Correlation Occurances: " << endl;
+			for (int i = 0; i < 110; i++)
 			{
-				cout << mainCorrelations[i].getItem(0) << " ";
+				cout << "Correlation " << i+1 << ": " << mainCorrelations[i].getOccurance() << endl;
 			}
 
 			cout << endl;

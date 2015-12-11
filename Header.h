@@ -24,7 +24,7 @@ int populateInitCorrelations(Correlation correlations[], int maxSize);
 
 //functions that use both classes
 void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize);
-void checkOccurance(Correlation currentCorrelation, Transaction currentTransactions[], int transactionSize);
+void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize);
 
 void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize);
 void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize);
