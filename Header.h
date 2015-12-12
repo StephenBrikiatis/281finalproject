@@ -4,7 +4,7 @@
 #include "transactionBasket.h"
 #include "correlationBasket.h"
 
-const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000, DATA_RANGE = 1000, CORRELATION_DEFAULT = 100000;
+const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000, DATA_RANGE = 1000, CORRELATION_DEFAULT = 500000;
 
 
 //database library

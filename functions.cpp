@@ -92,7 +92,12 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 
 			while (check)
 			{
-				if (tmpList[i].getItem(0) == tmpList[i + n].getItem(0))
+				for (int k = 0; k < comboLength - 2; k++)
+				{
+					if (tmpList[i].getItem(k) != tmpList[i + n].getItem(k))
+						check = false;
+				}
+				if (check != false)
 				{
 					//add all items except last one
 					for (int j = 0; j < comboLength - 1; j++)
@@ -106,10 +111,6 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 
 					if (n + i == tmpSize) //break out of loop if out of bounds
 						check = false;
-				}
-				else
-				{
-					check = false;
 				}
 			}
 		}

@@ -76,7 +76,7 @@ void::Correlation::clear()
 	}
 	mOccurance = 0;
 	mSize = 0;
-	mRelevant = false;
+	mRelevant = true;
 }
 
 //= operator overload 
