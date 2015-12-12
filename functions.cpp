@@ -248,6 +248,8 @@ void transactionRelevance(Transaction currentTransactions[], int transactionSize
 void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelations[], int correlationSize)
 {
 	bool isRelevant;
+	int correlNum;
+	int transNum;
 
 	//loop accessing correlations in basket
 	for (int i = 0; i < correlationSize; i++)
@@ -255,9 +257,12 @@ void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelat
 		isRelevant = false;
 		for (int j = 0; j < currentCorrelations[i].getSize(); j++)
 		{
+			correlNum = currentCorrelations[i].getItem(j);
 			for (int k = 0; k < currentTransaction.getSize(); k++)
 			{
-				if (currentCorrelations[i].getItem(j) == currentTransaction.getItem(k))
+				transNum = currentTransaction.getItem(k);
+
+				if (correlNum == transNum)
 				{
 					isRelevant = true;
 					break;
@@ -273,6 +278,10 @@ void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelat
 			{
 				//leave correlation, move to next one
 				break;
+			}
+			else
+			{
+				isRelevant = false;
 			}
 		}
 

@@ -53,20 +53,11 @@ int main()
 			correlationsLeft = correlationRelevance(mainCorrelations, correlationSize, minimumOccurance);
 
 			//MAKE NEW CORRELATIONS
-			mainCorrelations = new Correlation[1];
-			correlationSize = 1;
-			mainCorrelations[0].add(6, 0);
-			mainCorrelations[0].add(63, 1);
-			mainCorrelations[0].setSize(2);
-			/*for (int i = 0; i < correlationSize; i++)
-			{
-				
-			}*/
 
 			//UPDATE TRANSACTION RELEVANCE
 			transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < transactionSize; i++)
 			{
 				if (mainTransactions[i].getRelevant() == true)
 					cout << "Transaction " << i << ": " << "RELEVANT" << endl;
