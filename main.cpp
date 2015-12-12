@@ -35,9 +35,9 @@ int main()
 			//DO APRIORI STUFF HERE
 			cout << "What is the occurance limit you want to set for the correlations? "; //set minimum occurance
 			cin >> minimumOccurance;
-			//cout << "What would you like to name your output file? "; //set output file
-			//cin >> outputFileName;
-			//output.open(outputFileName + ".txt");
+			cout << "What would you like to name your output file? "; //set output file
+			cin >> outputFileName;
+			output.open(outputFileName + ".txt");
 
 			cout << endl << endl << "Please Wait... " << endl << endl;
 
@@ -61,10 +61,11 @@ int main()
 			transactionSize = populateNewTransactions(mainTransactions, transactionSize);
 
 			//PRINT OUT RESULTS
-			//printCorrelations(mainCorrelations, correlationSize, output);
+			printCorrelations(mainCorrelations, correlationSize, output);
 
 			//END LOOP
-			//output.close();
+			output.close();
+		}
 		else
 		{
 			cout << endl << "Sorry, the file you requested was not in our database. Please try again." << endl << endl;
