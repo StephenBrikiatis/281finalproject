@@ -42,6 +42,12 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 	output << endl << endl;
 }
 
+void printTime(double time, int minOccurance, ofstream &output)
+{
+	output << "Minimum Occurance: " << minOccurance << endl;
+	output << "Time Taken to Mine: " << time << " Seconds";
+}
+
 //makes new array of correlations
 int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLength)
 {
@@ -117,83 +123,6 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 	}
 
 	return newArraySize;
-}
-
-int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
-{
-	int numbers[1000];
-	Correlation resetHolder; //= new Correlation[comboLength];
-	int numbersLength, r = 0, index = 0, coreCount = 0, holder[50];
-
-	for (int i = 0; i < 50; i++)
-	{
-		holder[i] = 0;
-		resetHolder.add(0, i);
-		resetHolder.setSize(0);
-	}
-
-	numbersLength = createListOfNums(numbers, currentCore, coreArraySize);
-	cout << "Pause for dramatic effect." << endl;
-
-	if(comboLength > numbersLength)
-	{
-		cout << "Can't make a combination with that few numbers" << endl;
-	}
-
-
-	for (int i = 0; i <= coreArraySize - comboLength; i++)
-	{
-		holder[0] = numbers[i];
-		basketHelper(numbers, coreArraySize, comboLength, holder, i + 1, 1, currentCore, coreCount);
-	}
-
-	return coreCount;
-}
-
-void basketHelper(int numbers[], int coreArraySize, int comboLength, int holder[], int prevI, int j, Correlation currentCore[], int &coreCount)
-{
-	if (j == comboLength)
-	{
-		for (int w = 0; w < comboLength; w++)
-		{
-			currentCore[coreCount].add(holder[w], w);
-		}
-		coreCount++;
-		return;
-	}
-	for (int k = prevI; k <= coreArraySize - comboLength + j; k++)
-	{
-		holder[j] = numbers[k];
-		basketHelper(numbers, coreArraySize, comboLength, holder, k + 1, j + 1, currentCore, coreCount);
-	}
-}
-
-int createListOfNums(int listOfNums[], Correlation listOfCores[], int size)
-{
-	int correSize = 0, compare, listSize = 0;
-	Correlation tmp;
-	bool exists = false;
-
-	correSize = listOfCores[0].getSize();
-
-	for(int i = 0; i < size; i++)
-	{
-		if(listOfCores[i].getRelevant())
-		{
-			for(int j = 0; j < correSize; j++)
-			{
-				compare = listOfCores[i].getItem(j);
-				for(int k = 0; k < listSize; k++)
-				{
-					listOfNums[k];
-				}
-				listOfNums[listSize] = compare;
-				listSize++;
-			}
-		}
-	}
-
-	return listSize;
 }
 
 //opens file and populates initial transactions
@@ -393,98 +322,5 @@ bool correlationRelevance(Correlation currentCorrelations[], int correlationSize
 	{
 		return true;
 	}
-}
-
-//simple list of possible files
-string listOfFiles(int input)
-{
-	switch (input)
-	{
-	case 1:
-		return database[0];
-		break;
-	case 2:
-		return database[1];
-		break;
-	case 3:
-		return database[2];
-		break;
-	case 4:
-		return database[3];
-		break;
-	case 5:
-		return database[4];
-		break;
-	case 6:
-		return database[5];
-		break;
-	case 7:
-		return database[6];
-		break;
-	case 8:
-		return database[7];
-		break;
-	case 9:
-		return database[8];
-		break;
-	case 10:
-		return database[9];
-		break;
-	case 11:
-		return database[10];
-		break;
-	case 12:
-		return database[11];
-		break;
-	case 13:
-		return database[12];
-		break;
-	case 14:
-		return database[13];
-		break;
-	case 15:
-		return database[14];
-		break;
-	case 16:
-		return database[15];
-		break;
-	case 17:
-		return database[16];
-		break;
-	case 18:
-		return database[17];
-		break;
-	case 19:
-		return database[18];
-		break;
-	case 20:
-		return database[19];
-		break;
-	case 21:
-		return database[20];
-		break;
-	case 22:
-		return database[21];
-		break;
-	case 23:
-		return database[22];
-		break;
-	case 24:
-		return database[23];
-		break;
-	case 25:
-		return database[24];
-		break;
-	case 26:
-		return database[25];
-		break;
-	case 27:
-		return database[26];
-		break;
-	default:
-		cout << "Not an input.";
-
-	}
-
 }
 

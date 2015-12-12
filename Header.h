@@ -1,8 +1,9 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-#include "transactionBasket.h"
-#include "correlationBasket.h"
+#include "transaction.h"
+#include "correlation.h"
+#include "timerSystem.h"
 
 const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000, DATA_RANGE = 1000, CORRELATION_DEFAULT = 500000;
 
@@ -15,13 +16,9 @@ const string database[DATABASE_SIZE] = { "T5.N0.1K.D1K", "T5.N0.1K.D10K", "T5.N0
 
 bool checkUserInput(string input);
 void printCorrelations(Correlation currentBasket[], int size, ofstream &output);
+void printTime(double time, int minOccurance, ofstream &output);
 
 int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLength);//WORKING
-
-//Steve's
-int createBasket(Correlation currentCore[], int coreArraySize, int comboLength);
-void basketHelper(int numbers[], int coreArraySize, int comboLenght, int holder[], int prevI, int j, Correlation newCore[], int &coreCount);
-int createListOfNums(int listOfNums[], Correlation listOfCores[], int size);
 
 //init populates
 int populateWithFile(Transaction transactions[], string fileName);
@@ -38,7 +35,5 @@ void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelat
 
 //function that determines relevance for all correlations
 bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance);
-
-string listOfFiles(int input);
 
 #endif

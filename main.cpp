@@ -28,6 +28,8 @@ int main()
 		else if (checkUserInput(fileName))
 		{
 			ofstream output; //file stream for writing output data
+			TimerSystem timer;
+			double timeSpent = 0;
 
 			//DO APRIORI STUFF HERE
 			cout << "What is the occurance limit you want to set for the correlations? "; //set minimum occurance
@@ -37,9 +39,10 @@ int main()
 			output.open(outputFileName + ".txt");
 
 			cout << endl << endl << "Please Wait... " << endl << endl;
+			timer.startClock();
 
 			//VARIABLE INIT
-			Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
+			Transaction* mainTransactions = new Transaction[HIGH_FILE];
 			int transactionSize;
 			Correlation* mainCorrelations = new Correlation[CORRELATION_DEFAULT];
 			int correlationSize;
@@ -75,6 +78,9 @@ int main()
 				correlationLength++;
 			}
 			//END LOOP
+			timeSpent += timer.getTime();
+
+			printTime(timeSpent, minimumOccurance, output);
 			output.close();
 
 			cout << "Your data has been mined." << endl << endl;
