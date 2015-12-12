@@ -72,7 +72,7 @@ void::Correlation::clear()
 {
 	for (int i = 0; i < 50; i++)
 	{
-		cItems[i] = 0;
+		cItems[i] = NULL;
 	}
 	mOccurance = 0;
 	mSize = 0;

@@ -24,13 +24,19 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 
 	for (int i = 0; i < size; i++)
 	{
-		output << correlationNum << " [";
-		for (int j = 0; j < currentBasket[i].getSize(); j++)
+		if (currentBasket[i].getRelevant() == true)
 		{
-			output << " " << currentBasket[i].getItem(j);
+			output << correlationNum << " [";
+			for (int j = 0; j < currentBasket[i].getSize(); j++)
+			{
+				output << " " << currentBasket[i].getItem(j);
+			}
+			output << " ] Occurances: ";
+			output << currentBasket[i].getOccurance() << "  ";
+			output << endl;
+
+			correlationNum++;
 		}
-		output << "] Occurance: ";
-		output << currentBasket[i].getOccurance() << "  ";
 	}
 
 	output << endl << endl;
@@ -53,6 +59,12 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 		}
 	}
 
+	//clear current correlation array
+	for (int i = 0; i < coreArraySize; i++)
+	{
+		currentCore[i].clear();
+	}
+
 	if (comboLength == 2) //if combonation length is 2
 	{
 		for (int i = 0; i < tmpSize - 1; i++)
@@ -60,8 +72,10 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 			int n = 1;
 			while (i + n != tmpSize - 1)
 			{
-				currentCore[newArraySize].addItem(tmpList[i].getItem(0));
-				currentCore[newArraySize].addItem(tmpList[i + n].getItem(0));
+				int firstNum = tmpList[i].getItem(0);
+				int secondNum = tmpList[i + n].getItem(0);
+				currentCore[newArraySize].addItem(firstNum);
+				currentCore[newArraySize].addItem(secondNum);
 
 				newArraySize++;
 				n++;
@@ -86,7 +100,7 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 						currentCore[newArraySize].addItem(tmpList[i].getItem(j));
 					}
 					//add last one
-					currentCore[newArraySize].addItem(tmpList[i + n].getItem(comboLength - 1));
+					currentCore[newArraySize].addItem(tmpList[i + n].getItem(comboLength - 2));
 					n++;//increment check range
 					newArraySize++; //increment new array size
 
@@ -214,7 +228,7 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 {
 	for (int i = 0; i < maxSize; i++)
 	{
-		correlations[i].add(i+1, 0); // this is i+1 for testing perposes only
+		correlations[i].add(i, 0);
 		correlations[i].setSize(1);
 	}
 

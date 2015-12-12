@@ -4,7 +4,7 @@
 #include "transactionBasket.h"
 #include "correlationBasket.h"
 
-const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000, DATA_RANGE = 1000;
+const int DATABASE_SIZE = 27, SMALL_FILE = 1000, MEDIUM_FILE = 10000, HIGH_FILE = 100000, DATA_RANGE = 1000, CORRELATION_DEFAULT = 100000;
 
 
 //database library
@@ -15,8 +15,11 @@ const string database[DATABASE_SIZE] = { "T5.N0.1K.D1K", "T5.N0.1K.D10K", "T5.N0
 
 bool checkUserInput(string input);
 void printCorrelations(Correlation currentBasket[], int size, ofstream &output);
+
+int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLength);//WORKING
+
+//Steve's
 int createBasket(Correlation currentCore[], int coreArraySize, int comboLength);
-int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLength);//TEST FUNCTION
 void basketHelper(int numbers[], int coreArraySize, int comboLenght, int holder[], int prevI, int j, Correlation newCore[], int &coreCount);
 int createListOfNums(int listOfNums[], Correlation listOfCores[], int size);
 
