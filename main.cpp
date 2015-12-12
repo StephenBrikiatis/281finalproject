@@ -1,5 +1,6 @@
 #include "Header.h"
 
+<<<<<<< HEAD
 //int main()
 //{
 //	//initial variables
@@ -82,6 +83,8 @@
 //	return 0;
 //}
 
+=======
+>>>>>>> origin/arrayswereused
 int main()
 {
 	//initial variables
@@ -157,42 +160,3 @@ int main()
 	system("pause");
 	return 0;
 }
-
-
-//int main()
-//{
-//	Correlation newArray[10];
-//	int arraySize = 10;
-//
-//	populateInitCorrelations(newArray, 10);
-//
-//	createBasket(newArray, 10, 2);
-//
-//	cout << newArray[0].getItem(0) << endl << newArray[0].getItem(1);
-//
-//	pause();
-//	return 0;
-//}
-
-int main()
-{
-	Correlation oldArray[1000], newArray[1000];
-	int arraySize = 5;
-
-	populateInitCorrelations(oldArray, 5);
-
-	createBasket(oldArray, newArray, 5, 3);
-
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			cout << newArray[i].getItem(j);
-		}
-		cout << endl;
-	}
-
-	pause();
-	return 0;
-}
-//}
