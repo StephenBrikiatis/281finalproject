@@ -10,11 +10,6 @@ int main()
 	string fileName; //file to open
 	string outputFileName; //file to write to
 
-	Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
-	int transactionSize;
-	Correlation* mainCorrelations = new Correlation[CORRELATION_DEFAULT];
-	int correlationSize;
-
 	cout << "Welcome to New Horizon One's Apriori system. \n \n";
 
 	//menu loop
@@ -44,6 +39,11 @@ int main()
 			cout << endl << endl << "Please Wait... " << endl << endl;
 
 			//VARIABLE INIT
+			Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
+			int transactionSize;
+			Correlation* mainCorrelations = new Correlation[CORRELATION_DEFAULT];
+			int correlationSize;
+
 			correlationLength = 2;
 			correlationsLeft = true;
 
