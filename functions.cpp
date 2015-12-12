@@ -18,7 +18,7 @@ bool checkUserInput(string input)
 }
 
 //outputs current correlation and their occurances to the output file
-void printCorrelations(Correlation currentBasket[], int size, ofstream output)
+void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 {
 	int correlationNum = 1;
 
@@ -153,6 +153,31 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 	return maxSize;
 }
 
+//populates a new basket with the relevant transactions from the previous basket
+int populateNewTransactions(Transaction newBasket[], int transactionSize)
+{
+	Transaction *tmpList = new Transaction[transactionSize]; //tmp list to copy relevant transactions
+	int tmpSize = 0; //keeps track of new transactions to determine new size
+
+	//fill temp list
+	for (int i = 0; i < transactionSize; i++)
+	{
+		if (newBasket[i].getRelevant() == true)
+		{
+			tmpList[tmpSize] = newBasket[i];
+			tmpSize++;
+		}
+	}
+
+	//populate actual list
+	for (int j = 0; j < tmpSize; j++)
+	{
+		newBasket[j] = tmpList[j];
+	}
+
+	return tmpSize;
+}
+
 //function that begins counting all occurances of correlations
 void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize)
 {
@@ -202,37 +227,10 @@ void checkOccurance(Correlation &currentCorrelation, Transaction currentTransact
 		}
 	}
 
-	//for (int i = 0; i < transactionSize; i++)
-	//{
-	//	for (int j = 0; j < currentCorrelation.getSize(); j++)
-	//	{
-	//		int correlItem = currentCorrelation.getItem(j);
-
-	//		for (int k = 0; k < currentTransactions[i].getSize(); k++)
-	//		{
-	//			if (correlItem == currentTransactions[i].getItem(k))
-	//			{
-	//				check = true;
-	//				break;
-	//			}
-	//		}
-
-	//		if (check == true && j == currentCorrelation.getSize() - 1)
-	//		{
-	//			//if item was found, and is last item in correlation, add to occurance
-	//			currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
-	//		}
-	//		else if (check == false)
-	//		{
-	//			//leave transaction, move to next one
-	//			break;
-	//		}
-	//	}
-	//}
 }
 
 //compares current item sets to relevant correlations to determine which transactions are relevant or not
-void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize)
+void transactionRelevance(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize)
 {
 	for (int i = 0; i < transactionSize; i++)
 	{
@@ -240,9 +238,11 @@ void compare(Transaction currentTransactions[], int transactionSize, Correlation
 	}
 }
 
-void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize)
+void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelations[], int correlationSize)
 {
 	bool isRelevant;
+	int correlNum;
+	int transNum;
 
 	//loop accessing correlations in basket
 	for (int i = 0; i < correlationSize; i++)
@@ -250,9 +250,12 @@ void updateRelevant(Transaction currentTransaction, Correlation currentCorrelati
 		isRelevant = false;
 		for (int j = 0; j < currentCorrelations[i].getSize(); j++)
 		{
+			correlNum = currentCorrelations[i].getItem(j);
 			for (int k = 0; k < currentTransaction.getSize(); k++)
 			{
-				if (currentCorrelations[i].getItem(j) == currentTransaction.getItem(k))
+				transNum = currentTransaction.getItem(k);
+
+				if (correlNum == transNum)
 				{
 					isRelevant = true;
 					break;
@@ -269,12 +272,43 @@ void updateRelevant(Transaction currentTransaction, Correlation currentCorrelati
 				//leave correlation, move to next one
 				break;
 			}
+			else
+			{
+				isRelevant = false;
+			}
 		}
 
 		if (isRelevant == true)
 		{
 			break;
 		}
+	}
+}
+
+//goes through all correlations and updates their relevance by Gabe
+bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance)
+{
+	int count = 0;
+
+	for (int i = 0; i < correlationSize; i++)
+	{
+		if (currentCorrelations[i].getOccurance() < minOccurance)
+		{
+			currentCorrelations[i].setRelevant(false);
+		}
+		else
+		{
+			count++;
+		}		
+	}
+
+	if (count <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
 	}
 }
 

@@ -14,21 +14,31 @@ const string database[DATABASE_SIZE] = { "T5.N0.1K.D1K", "T5.N0.1K.D10K", "T5.N0
 
 
 bool checkUserInput(string input);
+<<<<<<< HEAD
 void printCorrelations(Correlation currentBasket[], int size, ofstream output);
 int createBasket(Correlation currentCore[], Correlation newCore[], int coreArraySize, int comboLength);
 void basketHelper(int numbers[], int coreArraySize, int comboLenght, int holder[], int prevI, int j, Correlation newCore[], int &coreCount);
+=======
+void printCorrelations(Correlation currentBasket[], int size, ofstream &output);
+int createBasket(Correlation currentCore[], int coreArraySize, int comboLength);
+>>>>>>> origin/arrayswereused
 int createListOfNums(int listOfNums[], Correlation listOfCores[], int size);
 
 //init populates
 int populateWithFile(Transaction transactions[], string fileName);
 int populateInitCorrelations(Correlation correlations[], int maxSize);
+int populateNewTransactions(Transaction newBasket[],  int transactionSize);
+
 
 //functions that use both classes
 void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize);
 void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize);
 
-void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize);
-void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize);
+void transactionRelevance(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize);
+void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelations[], int correlationSize);
+
+//function that determines relevance for all correlations
+bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance);
 
 string listOfFiles(int input);
 
