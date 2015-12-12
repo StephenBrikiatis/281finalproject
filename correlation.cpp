@@ -6,6 +6,7 @@ Correlation::Correlation()
 {
 	mOccurance = 0;
 	mRelevant = true;
+	mSize = 0;
 }
 Correlation::~Correlation()
 {
@@ -21,6 +22,12 @@ Correlation::~Correlation()
 void Correlation::add(int cItem, int position)
 {
 	cItems[position] = cItem;
+	mSize++;
+}
+
+void Correlation::addItem(int item)
+{
+	cItems[mSize] = item;
 	mSize++;
 }
 

@@ -18,6 +18,7 @@ public:
 	~Correlation();
 
 	void add(int cItem, int position); //add item to correlation
+	void addItem(int item);//autimatically add item
 
 	//getters and setters
 	int getOccurance();

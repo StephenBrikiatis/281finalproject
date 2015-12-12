@@ -45,9 +45,9 @@ int main()
 			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
 			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
 
-			//LOOP WOULD BEGIN HERE
-			while (correlationsLeft)
-			{
+			////LOOP WOULD BEGIN HERE
+			//while (correlationsLeft)
+			//{
 				//UPDATE CURRENT OCCURANCES
 				updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
 
@@ -55,20 +55,31 @@ int main()
 				correlationsLeft = correlationRelevance(mainCorrelations, correlationSize, minimumOccurance);
 
 				//MAKE NEW CORRELATIONS
-				correlationSize = createBasket()
+				correlationSize = createCorrelations(mainCorrelations, correlationSize, 2);//FIX THIS FOR THE LOVE OF GOD
+
+				cout << correlationSize << endl;
+				for (int i = 0; i < correlationSize; i++)
+				{
+					cout << "Correlation " << i << ": ";
+
+					for (int j = 0; j < 2; j++)
+						cout << mainCorrelations[i].getItem(j) << " ";
+
+					cout << endl;
+				}
 
 				//UPDATE TRANSACTION RELEVANCE
-				transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
+				//transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
 
 				//MAKE NEW TRANSACTIONS
-				transactionSize = populateNewTransactions(mainTransactions, transactionSize);
+				//transactionSize = populateNewTransactions(mainTransactions, transactionSize);
 
 				//PRINT OUT RESULTS
-				printCorrelations(mainCorrelations, correlationSize, output);
+				//printCorrelations(mainCorrelations, correlationSize, output);
 
 				//END LOOP
-			}
-			//output.close();
+			/*}
+			output.close();*/
 		}
 		else
 		{

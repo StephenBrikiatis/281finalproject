@@ -36,6 +36,74 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 	output << endl << endl;
 }
 
+//makes new array of correlations
+int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLength)
+{
+	int tmpSize = 0;
+	int newArraySize = 0;
+	Correlation* tmpList = new Correlation[coreArraySize];
+
+	//make array of relevant correlations
+	for (int i = 0; i < coreArraySize; i++)
+	{
+		if (currentCore[i].getRelevant() == true)
+		{
+			tmpList[tmpSize] = currentCore[i];
+			tmpSize++;
+		}
+	}
+
+	if (comboLength == 2) //if combonation length is 2
+	{
+		for (int i = 0; i < tmpSize - 1; i++)
+		{
+			int n = 1;
+			while (i + n != tmpSize - 1)
+			{
+				currentCore[newArraySize].addItem(tmpList[i].getItem(0));
+				currentCore[newArraySize].addItem(tmpList[i + n].getItem(0));
+
+				newArraySize++;
+				n++;
+			}
+		}
+	}
+	else //if combonation length is bigger than 2
+	{
+		//make new array, logic is hard
+		for (int i = 0; i < tmpSize - 1; i++)
+		{
+			bool check = true;//flag for staying in loop
+			int n = 1;//variable that determines how far to go in the array
+
+			while (check)
+			{
+				if (tmpList[i].getItem(0) == tmpList[i + n].getItem(0))
+				{
+					//add all items except last one
+					for (int j = 0; j < comboLength - 1; j++)
+					{
+						currentCore[newArraySize].addItem(tmpList[i].getItem(j));
+					}
+					//add last one
+					currentCore[newArraySize].addItem(tmpList[i + n].getItem(comboLength - 1));
+					n++;//increment check range
+					newArraySize++; //increment new array size
+
+					if (n + i == tmpSize) //break out of loop if out of bounds
+						check = false;
+				}
+				else
+				{
+					check = false;
+				}
+			}
+		}
+	}
+
+	return newArraySize;
+}
+
 int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
 {
 	int numbers[1000];
@@ -81,7 +149,7 @@ void basketHelper(int numbers[], int coreArraySize, int comboLength, int holder[
 	for (int k = prevI; k <= coreArraySize - comboLength + j; k++)
 	{
 		holder[j] = numbers[k];
-		basketHelper(numbers, coreArraySize, comboLength, holder, k + 1, j + 1, newCore, coreCount);
+		basketHelper(numbers, coreArraySize, comboLength, holder, k + 1, j + 1, currentCore, coreCount);
 	}
 }
 
