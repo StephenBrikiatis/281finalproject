@@ -131,24 +131,28 @@ int main()
 			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
 
 			//LOOP WOULD BEGIN HERE
-			//UPDATE CURRENT OCCURANCES
-			updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
+			while (correlationsLeft)
+			{
+				//UPDATE CURRENT OCCURANCES
+				updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
 
-			//UPDATE CORRELATION RELEVANCE
-			correlationsLeft = correlationRelevance(mainCorrelations, correlationSize, minimumOccurance);
+				//UPDATE CORRELATION RELEVANCE
+				correlationsLeft = correlationRelevance(mainCorrelations, correlationSize, minimumOccurance);
 
-			//MAKE NEW CORRELATIONS
+				//MAKE NEW CORRELATIONS
+				correlationSize = createBasket()
 
-			//UPDATE TRANSACTION RELEVANCE
-			transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
+				//UPDATE TRANSACTION RELEVANCE
+				transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
 
-			//MAKE NEW TRANSACTIONS
-			transactionSize = populateNewTransactions(mainTransactions, transactionSize);
+				//MAKE NEW TRANSACTIONS
+				transactionSize = populateNewTransactions(mainTransactions, transactionSize);
 
-			////PRINT OUT RESULTS
-			//printCorrelations(mainCorrelations, correlationSize, output);
+				//PRINT OUT RESULTS
+				printCorrelations(mainCorrelations, correlationSize, output);
 
-			////END LOOP
+				//END LOOP
+			}
 			//output.close();
 		}
 		else
