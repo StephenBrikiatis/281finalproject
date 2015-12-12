@@ -36,7 +36,7 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 	output << endl << endl;
 }
 
-int createBasket(Correlation currentCore[], Correlation newCore[], int coreArraySize, int comboLength)
+int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
 {
 	int numbers[1000];
 	Correlation resetHolder; //= new Correlation[comboLength];
@@ -61,19 +61,19 @@ int createBasket(Correlation currentCore[], Correlation newCore[], int coreArray
 	for (int i = 0; i <= coreArraySize - comboLength; i++)
 	{
 		holder[0] = numbers[i];
-		basketHelper(numbers, coreArraySize, comboLength, holder, i + 1, 1, newCore, coreCount);
+		basketHelper(numbers, coreArraySize, comboLength, holder, i + 1, 1, currentCore, coreCount);
 	}
 
 	return coreCount;
 }
 
-void basketHelper(int numbers[], int coreArraySize, int comboLength, int holder[], int prevI, int j, Correlation newCore[], int &coreCount)
+void basketHelper(int numbers[], int coreArraySize, int comboLength, int holder[], int prevI, int j, Correlation currentCore[], int &coreCount)
 {
 	if (j == comboLength)
 	{
 		for (int w = 0; w < comboLength; w++)
 		{
-			newCore[coreCount].add(holder[w], w);
+			currentCore[coreCount].add(holder[w], w);
 		}
 		coreCount++;
 		return;
