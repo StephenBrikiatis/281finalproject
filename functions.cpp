@@ -176,8 +176,6 @@ int populateNewTransactions(Transaction newBasket[], int transactionSize)
 		}
 	}
 
-	newBasket = new Transaction[tmpSize];
-
 	//populate actual list
 	for (int j = 0; j < tmpSize; j++)
 	{

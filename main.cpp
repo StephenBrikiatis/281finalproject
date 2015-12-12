@@ -35,9 +35,9 @@ int main()
 			//DO APRIORI STUFF HERE
 			cout << "What is the occurance limit you want to set for the correlations? "; //set minimum occurance
 			cin >> minimumOccurance;
-			cout << "What would you like to name your output file? "; //set output file
-			cin >> outputFileName;
-			output.open(outputFileName + ".txt");
+			//cout << "What would you like to name your output file? "; //set output file
+			//cin >> outputFileName;
+			//output.open(outputFileName + ".txt");
 
 			cout << endl << endl << "Please Wait... " << endl << endl;
 
@@ -53,18 +53,45 @@ int main()
 			correlationsLeft = correlationRelevance(mainCorrelations, correlationSize, minimumOccurance);
 
 			//MAKE NEW CORRELATIONS
+			mainCorrelations = new Correlation[1];
+			correlationSize = 1;
+			mainCorrelations[0].add(6, 0);
+			mainCorrelations[0].add(63, 1);
+			mainCorrelations[0].setSize(2);
+			/*for (int i = 0; i < correlationSize; i++)
+			{
+				
+			}*/
 
 			//UPDATE TRANSACTION RELEVANCE
 			transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
 
+			for (int i = 0; i < 100; i++)
+			{
+				if (mainTransactions[i].getRelevant() == true)
+					cout << "Transaction " << i << ": " << "RELEVANT" << endl;
+				else
+					cout << "Transaction " << i << ": " << "NOT" << endl;
+			}
+
 			//MAKE NEW TRANSACTIONS
 			transactionSize = populateNewTransactions(mainTransactions, transactionSize);
 
-			//PRINT OUT RESULTS
-			printCorrelations(mainCorrelations, correlationSize, output);
+			for (int i = 0; i < transactionSize; i++)
+			{
+				cout << "Transaction " << i << ": [";
+				for (int j = 0; j < mainTransactions[i].getSize(); j++)
+				{
+					cout << " " << mainTransactions[i].getItem(j);
+				}
+				cout << "]" << endl;
+			}
 
-			//END LOOP
-			output.close();
+			////PRINT OUT RESULTS
+			//printCorrelations(mainCorrelations, correlationSize, output);
+
+			////END LOOP
+			//output.close();
 		}
 		else
 		{
