@@ -18,7 +18,7 @@ bool checkUserInput(string input)
 }
 
 //outputs current correlation and their occurances to the output file
-void printCorrelations(Correlation currentBasket[], int size, ofstream output)
+void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 {
 	int correlationNum = 1;
 
@@ -212,7 +212,7 @@ void checkOccurance(Correlation &currentCorrelation, Transaction currentTransact
 }
 
 //compares current item sets to relevant correlations to determine which transactions are relevant or not
-void compare(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize)
+void transactionRelevance(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize)
 {
 	for (int i = 0; i < transactionSize; i++)
 	{
@@ -220,7 +220,7 @@ void compare(Transaction currentTransactions[], int transactionSize, Correlation
 	}
 }
 
-void updateRelevant(Transaction currentTransaction, Correlation currentCorrelations[], int correlationSize)
+void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelations[], int correlationSize)
 {
 	bool isRelevant;
 
