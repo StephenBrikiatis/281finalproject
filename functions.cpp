@@ -36,16 +36,17 @@ void printCorrelations(Correlation currentBasket[], int size, ofstream output)
 	output << endl << endl;
 }
 
-int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
+int createBasket(Correlation currentCore[], Correlation newCore[], int coreArraySize, int comboLength)
 {
 	int numbers[1000];
-	Correlation holder, resetHolder;
-	int numbersLength, r = 0, index = 0, coreCount = 0;
+	Correlation resetHolder; //= new Correlation[comboLength];
+	int numbersLength, r = 0, index = 0, coreCount = 0, holder[50];
 
 	for (int i = 0; i < 50; i++)
 	{
-		holder.add(0, i);
+		holder[i] = 0;
 		resetHolder.add(0, i);
+		resetHolder.setSize(0);
 	}
 
 	numbersLength = createListOfNums(numbers, currentCore, coreArraySize);
@@ -56,40 +57,32 @@ int createBasket(Correlation currentCore[], int coreArraySize, int comboLength)
 		cout << "Can't make a combination with that few numbers" << endl;
 	}
 
-	while(r >= 0)
-	{
-		if(index <= (numbersLength +(r -comboLength)))
-		{
-			holder.add(numbers[index], r);
 
-			if(r == comboLength-1)
-			{
-				currentCore[coreCount] = holder;
-				holder = resetHolder;
-				coreCount++;
-				index++;
-			}
-			else
-			{
-				index = (holder.getItem(r) + 1);
-				r++;
-			}
-		}
-		else
-		{
-			r--;
-			if(r > 0)
-			{
-				index = (holder.getItem(r) +1);
-			}
-			else
-			{
-				index = (holder.getItem(0) +1);
-			}
-		}
+	for (int i = 0; i <= coreArraySize - comboLength; i++)
+	{
+		holder[0] = numbers[i];
+		basketHelper(numbers, coreArraySize, comboLength, holder, i + 1, 1, newCore, coreCount);
 	}
 
 	return coreCount;
+}
+
+void basketHelper(int numbers[], int coreArraySize, int comboLength, int holder[], int prevI, int j, Correlation newCore[], int &coreCount)
+{
+	if (j == comboLength)
+	{
+		for (int w = 0; w < comboLength; w++)
+		{
+			newCore[coreCount].add(holder[w], w);
+		}
+		coreCount++;
+		return;
+	}
+	for (int k = prevI; k <= coreArraySize - comboLength + j; k++)
+	{
+		holder[j] = numbers[k];
+		basketHelper(numbers, coreArraySize, comboLength, holder, k + 1, j + 1, newCore, coreCount);
+	}
 }
 
 int createListOfNums(int listOfNums[], Correlation listOfCores[], int size)
@@ -153,7 +146,7 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 {
 	for (int i = 0; i < maxSize; i++)
 	{
-		correlations[i].add(i, 0);
+		correlations[i].add(i+1, 0); // this is i+1 for testing perposes only
 		correlations[i].setSize(1);
 	}
 

@@ -21,6 +21,7 @@ Correlation::~Correlation()
 void Correlation::add(int cItem, int position)
 {
 	cItems[position] = cItem;
+	mSize++;
 }
 
 //getters and setters for occurance
@@ -75,7 +76,7 @@ void::Correlation::clear()
 void Correlation::operator= (Correlation& rhs)
 {
 	clear();
-	for (int i = 0; i < rhs.getSize(); i++)
+	for (int i = 0; i < 50; i++)
 	{
 		cItems[i] = rhs.getItem(i);
 	}

@@ -1,86 +1,86 @@
 #include "Header.h"
 
-int main()
-{
-	//initial variables
-	int minimumOccurance; //variable for setting the minimum occurance that will be checked for
-	bool exit = false;
-	string fileName;
-
-	Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
-	int transactionSize;
-	Correlation* mainCorrelations = new Correlation[DATA_RANGE];
-	int correlationSize;
-
-	cout << "Welcome to New Horizon One's Apriori system. \n \n";
-
-	//menu loop
-	while (!exit)
-	{	
-		cout << "Please input the filename you wish to mine for, or enter -1 to leave. \n \n";
-		cout << "Input here: ";
-
-		cin >> fileName;
-
-		if (fileName == "-1")
-		{
-			cout << endl << endl << "Have a nice day!" << endl;
-			exit = true;
-		}
-		else if (checkUserInput(fileName))
-		{
-			//DO APRIORI STUFF HERE
-			cout << "What is the occurance limit you want to set for the correlations? ";
-			cin >> minimumOccurance;
-			cout << endl << endl;
-
-			//INITIAL POPULATIONS
-			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
-			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
-
-			//LOOP WOULD BEGIN HERE
-			//UPDATE CURRENT OCCURANCES
-			updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
-
-			cout << "Correlation Occurances: " << endl;
-			for (int i = 0; i < 150; i++)
-			{
-				cout << "Correlation " << i << ": " << mainCorrelations[i].getOccurance() << endl;
-			}
-
-			cout << endl;
-			////following two functions will load initial arrays
-			//mainTransactions.populateWithFile(string); DONE
-			//mainCorrelations.populateFromTrans(mainTransactions); DONE
-
-			////main apriori loop
-			//while (correlationSize > 0)
-			//{
-
-			//	//this function will check how many times each correlation occurs
-			//	updateOccurances(mainCorrelations, correlationsize, mainTransactions, transactionsize);
-
-			//	//PRUNE CORRELATIONS HERE, FUNCTION HAS YET TO BE DEFINED
-			//	createBasket / createListOfNums
-
-			//	//PRUNE TRANSACTIONS HERE
-			//	compare(mainTransactions)
-
-			//	//Output results and time!
-			//	printCorrelations()
-			//}
-
-			////REPEAT UNTIL NO MORE CORRELATIONS
-		}
-		else
-		{
-			cout << endl << "Sorry, the file you requested was not in our database. Please try again." << endl << endl;
-		}
-	}
-
-	system("pause");
-	return 0;
-}
+//int main()
+//{
+//	//initial variables
+//	int minimumOccurance; //variable for setting the minimum occurance that will be checked for
+//	bool exit = false;
+//	string fileName;
+//
+//	Transaction* mainTransactions = new Transaction[LARGEST_SIZE];
+//	int transactionSize;
+//	Correlation* mainCorrelations = new Correlation[DATA_RANGE];
+//	int correlationSize;
+//
+//	cout << "Welcome to New Horizon One's Apriori system. \n \n";
+//
+//	//menu loop
+//	while (!exit)
+//	{	
+//		cout << "Please input the filename you wish to mine for, or enter -1 to leave. \n \n";
+//		cout << "Input here: ";
+//
+//		cin >> fileName;
+//
+//		if (fileName == "-1")
+//		{
+//			cout << endl << endl << "Have a nice day!" << endl;
+//			exit = true;
+//		}
+//		else if (checkUserInput(fileName))
+//		{
+//			//DO APRIORI STUFF HERE
+//			cout << "What is the occurance limit you want to set for the correlations? ";
+//			cin >> minimumOccurance;
+//			cout << endl << endl;
+//
+//			//INITIAL POPULATIONS
+//			transactionSize = populateWithFile(mainTransactions, "dataset/" + fileName + ".txt");
+//			correlationSize = populateInitCorrelations(mainCorrelations, DATA_RANGE);
+//
+//			//LOOP WOULD BEGIN HERE
+//			//UPDATE CURRENT OCCURANCES
+//			updateOccurances(mainCorrelations, correlationSize, mainTransactions, transactionSize);
+//
+//			cout << "Correlation Occurances: " << endl;
+//			for (int i = 0; i < 150; i++)
+//			{
+//				cout << "Correlation " << i << ": " << mainCorrelations[i].getOccurance() << endl;
+//			}
+//
+//			cout << endl;
+//			////following two functions will load initial arrays
+//			//mainTransactions.populateWithFile(string); DONE
+//			//mainCorrelations.populateFromTrans(mainTransactions); DONE
+//
+//			////main apriori loop
+//			//while (correlationSize > 0)
+//			//{
+//
+//			//	//this function will check how many times each correlation occurs
+//			//	updateOccurances(mainCorrelations, correlationsize, mainTransactions, transactionsize);
+//
+//			//	//PRUNE CORRELATIONS HERE, FUNCTION HAS YET TO BE DEFINED
+//			//	createBasket / createListOfNums
+//
+//			//	//PRUNE TRANSACTIONS HERE
+//			//	compare(mainTransactions)
+//
+//			//	//Output results and time!
+//			//	printCorrelations()
+//			//}
+//
+//			////REPEAT UNTIL NO MORE CORRELATIONS
+//		}
+//		else
+//		{
+//			cout << endl << "Sorry, the file you requested was not in our database. Please try again." << endl << endl;
+//		}
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
 
 //int main()
 //{
@@ -159,14 +159,21 @@ int main()
 
 int main()
 {
-	Correlation newArray[1000];
-	int arraySize = 1000;
+	Correlation oldArray[1000], newArray[1000];
+	int arraySize = 5;
 
-	populateInitCorrelations(newArray, 1000);
+	populateInitCorrelations(oldArray, 5);
 
-	createBasket(newArray, 1000, 2);
+	createBasket(oldArray, newArray, 5, 3);
 
-	cout << newArray[0].getItem(0) << endl << newArray[0].getItem(1);
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			cout << newArray[i].getItem(j);
+		}
+		cout << endl;
+	}
 
 	pause();
 	return 0;
