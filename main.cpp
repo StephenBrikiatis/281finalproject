@@ -1,6 +1,5 @@
 #include "Header.h"
 
-<<<<<<< HEAD
 //int main()
 //{
 //	//initial variables
@@ -82,7 +81,7 @@
 //	system("pause");
 //	return 0;
 //}
-=======
+
 int main()
 {
 	//initial variables
@@ -158,7 +157,6 @@ int main()
 	system("pause");
 	return 0;
 }
->>>>>>> origin/arrayswereused
 
 
 //int main()
@@ -174,7 +172,6 @@ int main()
 //
 //	pause();
 //	return 0;
-<<<<<<< HEAD
 //}
 
 int main()
@@ -198,6 +195,4 @@ int main()
 	pause();
 	return 0;
 }
-=======
 //}
->>>>>>> origin/arrayswereused
