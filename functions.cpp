@@ -160,6 +160,33 @@ int populateInitCorrelations(Correlation correlations[], int maxSize)
 	return maxSize;
 }
 
+//populates a new basket with the relevant transactions from the previous basket
+int populateNewTransactions(Transaction newBasket[], int transactionSize)
+{
+	Transaction *tmpList = new Transaction[transactionSize]; //tmp list to copy relevant transactions
+	int tmpSize = 0; //keeps track of new transactions to determine new size
+
+	//fill temp list
+	for (int i = 0; i < transactionSize; i++)
+	{
+		if (newBasket[i].getRelevant() == true)
+		{
+			tmpList[tmpSize] = newBasket[i];
+			tmpSize++;
+		}
+	}
+
+	newBasket = new Transaction[tmpSize];
+
+	//populate actual list
+	for (int j = 0; j < tmpSize; j++)
+	{
+		newBasket[j] = tmpList[j];
+	}
+
+	return tmpSize;
+}
+
 //function that begins counting all occurances of correlations
 void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize)
 {

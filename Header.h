@@ -21,6 +21,8 @@ int createListOfNums(int listOfNums[], Correlation listOfCores[], int size);
 //init populates
 int populateWithFile(Transaction transactions[], string fileName);
 int populateInitCorrelations(Correlation correlations[], int maxSize);
+int populateNewTransactions(Transaction newBasket[],  int transactionSize);
+
 
 //functions that use both classes
 void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize);
