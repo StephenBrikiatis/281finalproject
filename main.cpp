@@ -57,26 +57,8 @@ int main()
 			//UPDATE TRANSACTION RELEVANCE
 			transactionRelevance(mainTransactions, transactionSize, mainCorrelations, correlationSize);
 
-			for (int i = 0; i < transactionSize; i++)
-			{
-				if (mainTransactions[i].getRelevant() == true)
-					cout << "Transaction " << i << ": " << "RELEVANT" << endl;
-				else
-					cout << "Transaction " << i << ": " << "NOT" << endl;
-			}
-
 			//MAKE NEW TRANSACTIONS
 			transactionSize = populateNewTransactions(mainTransactions, transactionSize);
-
-			for (int i = 0; i < transactionSize; i++)
-			{
-				cout << "Transaction " << i << ": [";
-				for (int j = 0; j < mainTransactions[i].getSize(); j++)
-				{
-					cout << " " << mainTransactions[i].getItem(j);
-				}
-				cout << "]" << endl;
-			}
 
 			////PRINT OUT RESULTS
 			//printCorrelations(mainCorrelations, correlationSize, output);
