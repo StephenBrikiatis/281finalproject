@@ -1,6 +1,32 @@
+/*
+Modified by:   Gabriel Pereyra and Stephen Brikiatis
+Class:         CSI-281-03
+Assignment:    Final Project
+Date Assigned: 12/12/2015
+Due Date:      11/16/2015
+Description:
+An implementaion for Apriori. Reads a file and finds correlations within the data
+and then outputs that data to a text file. This system also times the data extraction
+and is open to variable minimum thresholds.
+
+Certification of Authenticity:
+I certify that this is entirely my own work, except where I have given
+fully-documented references to the work of others. I understand the
+definition and consequences of plagiarism and acknowledge that the assessor
+of this assignment may, for the purpose of assessing this assignment:
+- Reproduce this assignment and provide a copy to another member of
+academic staff; and/or
+- Communicate a copy of this assignment to a plagiarism checking
+service (which may then retain a copy of this assignment on its
+database for the purpose of future plagiarism checking)
+*/
 #include "Header.h"
 
-//checks user input to see if it matches a file on database
+/*  Author:  Gabriel Pereyra
+*	   Pre:  User inputs a string
+*     Post:  True is returned if string matches file on database, false if not.
+*  Purpose:  To validate user input for the filename
+*************************************************************************/
 bool checkUserInput(string input)
 {
 	bool validate = false;
@@ -17,38 +43,46 @@ bool checkUserInput(string input)
 	return validate;
 }
 
-//outputs current correlation and their occurances to the output file
-void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
+/*  Author:  Gabriel Pereyra
+*	   Pre:  An array of correlations is populated
+*     Post:  Updates correlation relevance depending on the occurance number
+*			 returns false if data mining is done (not enough correlations left)
+*			 or true if there is still mining to be done.
+*  Purpose:  To go through the correlation array and determine which 
+			 correlations are relevant
+*************************************************************************/
+bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance)
 {
-	int correlationNum = 1;
+	int count = 0;
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < correlationSize; i++)
 	{
-		if (currentBasket[i].getRelevant() == true)
+		if (currentCorrelations[i].getOccurance() < minOccurance)
 		{
-			output << correlationNum << " [";
-			for (int j = 0; j < currentBasket[i].getSize(); j++)
-			{
-				output << " " << currentBasket[i].getItem(j);
-			}
-			output << " ] Occurances: ";
-			output << currentBasket[i].getOccurance() << "  ";
-			output << endl;
-
-			correlationNum++;
+			currentCorrelations[i].setRelevant(false);
+		}
+		else
+		{
+			count++;
 		}
 	}
 
-	output << endl << endl;
+	if (count <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
-void printTime(double time, int minOccurance, ofstream &output)
-{
-	output << "Minimum Occurance: " << minOccurance << endl;
-	output << "Time Taken to Mine: " << time << " Seconds";
-}
-
-//makes new array of correlations
+/*  Author:  Gabriel Pereyra
+*	   Pre:  A correlation with updated relevance is passed in
+*     Post:  Creates a new list of correlations from the previously relevant ones
+*			 returns new size of array.
+*  Purpose:  To create a new population of correlations of incrementing length
+*************************************************************************/
 int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLength)
 {
 	int tmpSize = 0;
@@ -125,7 +159,59 @@ int createCorrelations(Correlation currentCore[], int coreArraySize, int comboLe
 	return newArraySize;
 }
 
-//opens file and populates initial transactions
+/*  Author:  Gabriel Pereyra
+*	   Pre:  Data mining loop has begun
+*     Post:  Creates a new list of all possible single digit correlations
+*			 returns new size of array.
+*  Purpose:  To have a starting correlation list to work with
+*************************************************************************/
+int populateInitCorrelations(Correlation correlations[], int maxSize)
+{
+	for (int i = 0; i < maxSize; i++)
+	{
+		correlations[i].add(i, 0);
+		correlations[i].setSize(1);
+	}
+
+	return maxSize;
+}
+
+/*  Author:  Gabriel Pereyra
+*	   Pre:  A transaction array with updated relevance is passed in
+*     Post:  Updates array to only include relevant transactions
+*			 returns new size of array
+*  Purpose:  To prune list of transactions for efficiency
+*************************************************************************/
+int populateNewTransactions(Transaction newBasket[], int transactionSize)
+{
+	Transaction *tmpList = new Transaction[transactionSize]; //tmp list to copy relevant transactions
+	int tmpSize = 0; //keeps track of new transactions to determine new size
+
+	//fill temp list
+	for (int i = 0; i < transactionSize; i++)
+	{
+		if (newBasket[i].getRelevant() == true)
+		{
+			tmpList[tmpSize] = newBasket[i];
+			tmpSize++;
+		}
+	}
+
+	//populate actual list
+	for (int j = 0; j < tmpSize; j++)
+	{
+		newBasket[j] = tmpList[j];
+	}
+
+	return tmpSize;
+}
+
+/*  Author:  Gabriel Pereyra
+*	   Pre:  A data file is passed in
+*     Post:  Populates transaction array with data from the file
+*			 returns new size of array
+*  Purpose:  To transfer data from file to be mined from 
+*************************************************************************/
 int populateWithFile(Transaction transactions[], string fileName)
 {
 	//tmp variables for storing the data
@@ -153,95 +239,53 @@ int populateWithFile(Transaction transactions[], string fileName)
 	return tmpSize;
 }
 
-//makes initial list of possible correlations
-int populateInitCorrelations(Correlation correlations[], int maxSize)
+/*  Author:  Gabriel Pereyra
+*	   Pre:  An updated correlation array is passed in
+*     Post:  Prints relevant current correlations and their occurances
+*			 on the output file
+*  Purpose:  To print relevant correlation data to an outputfile
+*************************************************************************/
+void printCorrelations(Correlation currentBasket[], int size, ofstream &output)
 {
-	for (int i = 0; i < maxSize; i++)
+	int correlationNum = 1;
+
+	for (int i = 0; i < size; i++)
 	{
-		correlations[i].add(i, 0);
-		correlations[i].setSize(1);
-	}
-
-	return maxSize;
-}
-
-//populates a new basket with the relevant transactions from the previous basket
-int populateNewTransactions(Transaction newBasket[], int transactionSize)
-{
-	Transaction *tmpList = new Transaction[transactionSize]; //tmp list to copy relevant transactions
-	int tmpSize = 0; //keeps track of new transactions to determine new size
-
-	//fill temp list
-	for (int i = 0; i < transactionSize; i++)
-	{
-		if (newBasket[i].getRelevant() == true)
+		if (currentBasket[i].getRelevant() == true)
 		{
-			tmpList[tmpSize] = newBasket[i];
-			tmpSize++;
+			output << correlationNum << " [";
+			for (int j = 0; j < currentBasket[i].getSize(); j++)
+			{
+				output << " " << currentBasket[i].getItem(j);
+			}
+			output << " ] Occurances: ";
+			output << currentBasket[i].getOccurance() << "  ";
+			output << endl;
+
+			correlationNum++;
 		}
 	}
 
-	//populate actual list
-	for (int j = 0; j < tmpSize; j++)
-	{
-		newBasket[j] = tmpList[j];
-	}
-
-	return tmpSize;
+	output << endl << endl;
 }
 
-//function that begins counting all occurances of correlations
-void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize)
+/*  Author:  Gabriel Pereyra
+*	   Pre:  A time double is passed in
+*     Post:  Prints time taken to perform operation to the file
+*  Purpose:  To print the time it takes to perform the mining to an output file
+*************************************************************************/
+void printTime(double time, int minOccurance, ofstream &output)
 {
-	for (int i = 0; i < correlationSize; i++)
-	{
-		checkOccurance(currentCorrelations[i], currentTransactions, transactionSize);
-	}
+	output << "Minimum Occurance: " << minOccurance << endl;
+	output << "Time Taken to Mine: " << time << " Seconds";
 }
 
-//goes through all transactions to see how many times a correlation occurs, by Gabe
-void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize)
-{
-	bool check = false;
-	int correlNum;
-	int transNum;
-
-	for (int i = 0; i < transactionSize; i++)
-	{
-		for (int j = 0; j < currentCorrelation.getSize(); j++)
-		{
-			correlNum = currentCorrelation.getItem(j);
-
-			for (int k = 0; k < currentTransactions[i].getSize(); k++)
-			{
-				transNum = currentTransactions[i].getItem(k);
-
-				if (correlNum == transNum)
-				{
-					check = true;
-					break;
-				}
-			}
-
-			if (check == true && j == currentCorrelation.getSize() - 1)
-			{
-				currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
-				check = false;
-			}
-			else if (check == false)
-			{
-				break;
-			}
-			else
-			{
-				check = false;
-			}
-		}
-	}
-
-}
-
-//compares current item sets to relevant correlations to determine which transactions are relevant or not
+/*  Author:  Gabriel Pereyra
+*	   Pre:  An updated correlation array and transaction array is passed in
+*     Post:  Transaction array is pruned so that only relevant transactions remain
+*  Purpose:  To compare current transactions to relevant correlations to shorten and prune
+*			 the current transaction list
+*************************************************************************/
 void transactionRelevance(Transaction currentTransactions[], int transactionSize, Correlation currentCorrelations[], int correlationSize)
 {
 	for (int i = 0; i < transactionSize; i++)
@@ -249,7 +293,6 @@ void transactionRelevance(Transaction currentTransactions[], int transactionSize
 		updateRelevant(currentTransactions[i], currentCorrelations, correlationSize);
 	}
 }
-
 void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelations[], int correlationSize)
 {
 	bool isRelevant;
@@ -297,30 +340,61 @@ void updateRelevant(Transaction &currentTransaction, Correlation currentCorrelat
 	}
 }
 
-//goes through all correlations and updates their relevance by Gabe
-bool correlationRelevance(Correlation currentCorrelations[], int correlationSize, int minOccurance)
+/*  Author:  Gabriel Pereyra
+*	   Pre:  An updated correlation array and transaction array is passed in
+*     Post:  Occurance members of correlations in the correlation array are updated to reflect
+*			 their occurance in the transaction array that is passed in
+*  Purpose:  To compare correlations and transactions to determine the occurance of
+*			 each correlation in array
+*************************************************************************/
+void updateOccurances(Correlation currentCorrelations[], int correlationSize, Transaction currentTransactions[], int transactionSize)
 {
-	int count = 0;
-
 	for (int i = 0; i < correlationSize; i++)
 	{
-		if (currentCorrelations[i].getOccurance() < minOccurance)
-		{
-			currentCorrelations[i].setRelevant(false);
-		}
-		else
-		{
-			count++;
-		}		
-	}
-
-	if (count <= 1)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
+		checkOccurance(currentCorrelations[i], currentTransactions, transactionSize);
 	}
 }
+void checkOccurance(Correlation &currentCorrelation, Transaction currentTransactions[], int transactionSize)
+{
+	bool check = false;
+	int correlNum;
+	int transNum;
+
+	for (int i = 0; i < transactionSize; i++)
+	{
+		for (int j = 0; j < currentCorrelation.getSize(); j++)
+		{
+			correlNum = currentCorrelation.getItem(j);
+
+			for (int k = 0; k < currentTransactions[i].getSize(); k++)
+			{
+				transNum = currentTransactions[i].getItem(k);
+
+				if (correlNum == transNum)
+				{
+					check = true;
+					break;
+				}
+			}
+
+			if (check == true && j == currentCorrelation.getSize() - 1)
+			{
+				currentCorrelation.setOccurance(currentCorrelation.getOccurance() + 1);
+				check = false;
+			}
+			else if (check == false)
+			{
+				break;
+			}
+			else
+			{
+				check = false;
+			}
+		}
+	}
+
+}
+
+
+
 
